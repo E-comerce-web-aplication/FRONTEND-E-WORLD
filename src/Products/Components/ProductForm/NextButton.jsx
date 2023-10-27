@@ -1,12 +1,23 @@
+import { useContext } from "react"
+import { ProductContext } from "../../Context/ProductContext"
 
 
-export const NextButton = ({ nextRef })=>{
-   
+export const NextButton = ({ nextRef, next, disableButton })=>{
+    const { onNextForm , onStep } = useContext(ProductContext)
+
     return (
         <button 
+        onClick={()=>{
+            onNextForm(next)
+            onStep(next)
+        }}
         ref={nextRef}
-        className="border-2 self-center w-64 m-1 h-10 font-bold rounded-md hover:scale-[1.02]
-        bg-theme text-white text-xl hover:bg-orange-400 focus:outline-none focus:scale-[1.02]">
+        disabled={disableButton === false}
+        type="button"
+        className={`${ disableButton === false ? 
+            "bg-black/50 hover:bg-black/60": 
+            "bg-theme hover:bg-orange-400 hover:scale-[1.02]"} border-2 self-center w-64 m-1 h-10 font-bold rounded-md 
+         text-white text-xl  focus:outline-none focus:scale-[1.02]`}>
             Next
         </button>
     )

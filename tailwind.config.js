@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        theme: 'rgb(255 120 30)'
+        'theme': 'rgb(255 120 30)',
+        themes:'black'
       },
       keyframes: {
         'progress-bar':{

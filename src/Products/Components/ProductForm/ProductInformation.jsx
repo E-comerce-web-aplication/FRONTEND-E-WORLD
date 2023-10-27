@@ -5,10 +5,17 @@ import { NextButton } from './NextButton'
 
 
 const items = {
-    name: '',
+    name:'',
     description:'',
-    stock: '',
-    price: '',
+    stock:0,
+    price:'',
+}
+
+const validationForm = {
+    name:[(value)=>value?.trim().length > 0 ],
+    description:[(value)=> value?.trim().length > 0],
+    stock: [(value)=> value?.length > 0],
+    price: [(value)=> value?.trim().length > 0]
 }
 
 export const ProductInformation = ()=>{
@@ -21,8 +28,8 @@ export const ProductInformation = ()=>{
 
 
     
-    const { name, description, stock, price, onNextInput} = useForm(items)
-
+    const { name, description, stock, price, onNextInput, disableButton, onInputChange} = useForm(items, validationForm)
+    
     return (
         <div className='flex flex-col gap-1'>
             <form className='flex flex-col'>
@@ -32,8 +39,10 @@ export const ProductInformation = ()=>{
                     id='name'
                     ref={nameRef}
                     name='name'
+                    value={name}
                     onKeyDown={(e)=>onNextInput( e, stockRef )}
-                    type="text" 
+                    type="text"
+                    onChange={onInputChange} 
                     placeholder='sombria ejemplo'
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
                 </div>
@@ -42,6 +51,8 @@ export const ProductInformation = ()=>{
                     <input
                     ref={stockRef}
                     name='stock'
+                    onChange={onInputChange}
+                    value={stock}
                     onKeyDown={(e)=>onNextInput(e,priceRef )}
                     type="number" 
                     placeholder='23'
@@ -52,6 +63,8 @@ export const ProductInformation = ()=>{
                     <input
                     ref={priceRef}
                     name='price'
+                    onChange={onInputChange}
+                    value={price}
                     onKeyDown={(e)=>onNextInput(e,descriptionRef )}
                     type="text"
                     placeholder='23.45' 
@@ -62,12 +75,17 @@ export const ProductInformation = ()=>{
                     <textarea
                     ref={descriptionRef}
                     name='description'
+                    onChange={onInputChange}
+                    value={description}
                     onKeyDown={(e)=>onNextInput(e,nextRef)}
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50'>
                     </textarea>
                 </div>
             </form>
-            <NextButton nextRef={nextRef}/>
+            <NextButton 
+            nextRef={nextRef} 
+            next={1} 
+            disableButton={disableButton}/>
         </div>
     )
 }

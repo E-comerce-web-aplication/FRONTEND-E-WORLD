@@ -1,12 +1,11 @@
-import { useState } from "react"
+import { useContext } from "react"
 import { ProductInformation } from "./ProductInformation"
 import { StepForm } from "./stepForm"
-
-
+import { ImageForm } from "./ImageForms"
+import { ProductContext }  from "../../Context/ProductContext"
 
 export const IndexForm = ()=>{
-
-    const [ nextForm, setNextForm ] = useState(0)
+    const { nextForm } = useContext(ProductContext)
 
     const onChangeForm = (step)=>{
         if (step === 0){
@@ -17,12 +16,20 @@ export const IndexForm = ()=>{
                 </>
             )
         }
+        if( step === 1 ){
+            return (
+                <>
+                <StepForm steps={1}/>
+                <ImageForm/>
+                </>
+            )
+        }
     }
 
     return (
         <>
         {
-            onChangeForm(0)
+            onChangeForm(nextForm)
         }
         </>
     )

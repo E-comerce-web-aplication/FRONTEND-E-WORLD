@@ -1,7 +1,26 @@
-import { ReactComponent as Logo } from "../../public/logo.svg"
+import { ReactComponent as Logo } from "../../public/Logo.svg"
+import { ReactComponent as ShopLogo } from "../../public/Shopi.svg"
 
-export const ShopiLogo = ({ color })=>{
+export const ShopiLogo = ({ color, whereIcon })=>{
+
+    const whereIconPage = (where)=>{
+        if( where == 'menu'){
+            return (
+                <ShopLogo className="h-16 w-28" fill={color}/>
+            )
+        }
+        if(where == 'auth'){
+            return (
+                <Logo className="h-full w-full" fill={color}/>
+            )
+        }
+    }
+
     return(
-        <Logo className="h-14 w-20" fill={color}/>
+        <>
+        {
+            whereIconPage(whereIcon)
+        }
+        </>
     )
 }
