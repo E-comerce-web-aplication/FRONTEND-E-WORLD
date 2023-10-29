@@ -3,9 +3,12 @@ import { Bars3Icon, ChevronDoubleUpIcon, ShoppingBagIcon, UserCircleIcon } from 
 
 import { ShopiLogo } from "../../icons/ShopiLogo"
 import { useState } from "react"
+import { Modal } from "./Modal"
+import { OrderModal } from "./OrderModal"
 
 export const Navbar = ()=>{
     const [ openMenu, setOpenMenu ] = useState(false)
+    const [ openModal, setOpenModal ] = useState(false)
 
     const onOpenMenu = ()=>{
         setOpenMenu(!openMenu)
@@ -27,7 +30,7 @@ export const Navbar = ()=>{
                 >
                     <UserCircleIcon className="h-[2.2rem] text-theme pl-7"/>
                 </NavLink>
-                <NavLink className="self-center hover:scale-[1.02]">
+                <NavLink onClick={()=>setOpenModal(!openModal)} className="self-center hover:scale-[1.02]">
                     <span className="absolute text-black/9s0 font-bold">0</span>
                    <ShoppingBagIcon className="text-white h-10"/>
                 </NavLink>
@@ -45,12 +48,19 @@ export const Navbar = ()=>{
                         </NavLink>
                     </li>
                     <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink >
-                            Products
+                        <NavLink to="/orders">
+                            Orders
                         </NavLink>
                     </li>
                </div>
               <ChevronDoubleUpIcon onClick={onCloseMenu} className="mt-2 self-center h-9 text-theme bg-white w-full border-2 border-theme cursor-pointer"/>
+             {
+                openModal === true &&(
+                    <Modal>
+                      <OrderModal/>
+                    </Modal>
+                )
+             }
             </div>
         </ul>
     )

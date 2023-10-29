@@ -3,6 +3,7 @@ import { CommonRouter } from "../Common"
 import { ProductRouter } from "../Products/Router/ProductRouter"
 import { UserRouter } from "../Users"
 import { AuthRouter } from "../Auth"
+import { OrderRouter } from "../Orders"
 
 export const RouterApp = ()=>{
     return (
@@ -11,6 +12,7 @@ export const RouterApp = ()=>{
             <Route path="/auth/*" element={<AuthRouter/>}/>
             <Route path="/products/*" element={<ProductRouter/>}/>
             <Route path="/users/*" element={<UserRouter/>}/>
+            <Route path="/orders/*" element={<OrderRouter/>}/>
         </Routes>
     )
 }
