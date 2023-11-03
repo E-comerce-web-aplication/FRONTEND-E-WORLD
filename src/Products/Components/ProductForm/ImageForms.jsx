@@ -1,7 +1,7 @@
 import { CameraIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 
-import { NextButton } from './NextButton'
+import { NextButton } from '../../../Common/Components/NextButton'
 import { useForm } from '../../../Hooks/useForm'
 
 const items = {
@@ -56,9 +56,6 @@ export const ImageForm = ()=>{
                         id="imageProduct" className="hidden" type="file" multiple/>
                     </div>
                 </figure>
-                <NextButton  
-                next={2} 
-                disableButton={disableButton} />
             </form>
         </div>
     )

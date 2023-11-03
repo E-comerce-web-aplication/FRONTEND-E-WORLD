@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import { ProductInformation } from "./ProductInformation"
-import { StepForm } from "./stepForm"
 import { ImageForm } from "./ImageForms"
 import { ProductContext }  from "../../Context/ProductContext"
+import { FormLayout } from "../../../Layout/FormLayout"
 
 export const IndexForm = ()=>{
     const { nextForm } = useContext(ProductContext)
@@ -10,18 +10,16 @@ export const IndexForm = ()=>{
     const onChangeForm = (step)=>{
         if (step === 0){
            return (
-                <>
-                  <StepForm steps={0}/>
+                <FormLayout step={3}>
                   <ProductInformation/>
-                </>
+                </FormLayout>
             )
         }
         if( step === 1 ){
             return (
-                <>
-                <StepForm steps={1}/>
-                <ImageForm/>
-                </>
+                <FormLayout step={3}>
+                  <ImageForm/>
+                </FormLayout>
             )
         }
     }

@@ -1,7 +1,7 @@
 
 import { useRef } from 'react'
 import { useForm } from '../../../Hooks/useForm'
-import { NextButton } from './NextButton'
+import { NextButton } from '../../../Common/Components/NextButton'
 
 
 const items = {
@@ -82,10 +82,6 @@ export const ProductInformation = ()=>{
                     </textarea>
                 </div>
             </form>
-            <NextButton 
-            nextRef={nextRef} 
-            next={1} 
-            disableButton={disableButton}/>
         </div>
     )
 }

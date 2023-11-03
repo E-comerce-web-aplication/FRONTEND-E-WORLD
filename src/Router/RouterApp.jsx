@@ -4,6 +4,8 @@ import { ProductRouter } from "../Products/Router/ProductRouter"
 import { UserRouter } from "../Users"
 import { AuthRouter } from "../Auth"
 import { OrderRouter } from "../Orders"
+import { InventoryRouter } from "../Inventory"
+import { RegisterRouter } from "../Registers/Router/RegisterRouter"
 
 export const RouterApp = ()=>{
     return (
@@ -13,6 +15,8 @@ export const RouterApp = ()=>{
             <Route path="/products/*" element={<ProductRouter/>}/>
             <Route path="/users/*" element={<UserRouter/>}/>
             <Route path="/orders/*" element={<OrderRouter/>}/>
+            <Route path="/registers/*" element={<RegisterRouter/>}/>
+            <Route path="/inventory/*" element={<InventoryRouter/>}/>
         </Routes>
     )
 }

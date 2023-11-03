@@ -5,8 +5,7 @@ import { NextButton } from "./NextButton"
 
 export const UserForm = ()=>{
     return (
-        <>
-        <form className=" flex flex-col max-w-md gap-2">
+        <form className=" flex flex-col max-w-md gap-2 self-center">
             <section className="flex flex-col gap-1">
                 <section className="flex gap-1 justify-center">
                     <div className='flex flex-col '>
@@ -80,10 +79,5 @@ export const UserForm = ()=>{
 
         </form>
                 
-        <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80">
-            <NextButton/>    
-            <button className="bg-blue-500 rounded-lg h-10 text-white"> Google</button>                    
-        </section>
-        </>
     )
 }
