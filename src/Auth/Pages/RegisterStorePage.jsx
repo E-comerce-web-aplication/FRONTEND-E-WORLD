@@ -3,7 +3,7 @@ import { IndexForm } from "../Components/IndexForm"
 
 
 
-export const SigInPage = ()=>{
+export const RegisterStorePage = ()=>{
 
     const onInputChange = ({ target })=>{
        

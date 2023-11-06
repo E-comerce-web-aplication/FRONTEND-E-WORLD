@@ -1,9 +1,19 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 import { ShopiLogo } from '../../icons/ShopiLogo'
+import { useSelector } from "react-redux"
 
 
 
 export const EndForm = ()=>{
+    const { owner, company, store, userStore } = useSelector( state => state.auth )
+
+    console.log( {
+        owner: owner,
+        company: company,
+        store: store,
+        userStore: userStore
+    })
+
     return (
         <section className="flex flex-col gap-2">
             <h2 className="border-2 font-bold text-3xl p-1 m-1 mt-2 text-center border-dashed border-theme text-theme rounded-lg">Bienvenido a Es Shopi!!</h2>

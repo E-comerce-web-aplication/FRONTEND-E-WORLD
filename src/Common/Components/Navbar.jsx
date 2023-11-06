@@ -26,7 +26,7 @@ export const Navbar = ()=>{
                    <ShopiLogo whereIcon="menu" color="white"/>
                 </NavLink>
                 <li className="flex gap-1 self-center text-white font-bold sm:hidden">
-                    <NavLink to="/auth/login" className="border-2 p-1 bg-theme rounded-md border-white hover:scale-[1.02] hover:bg-white/30">
+                    <NavLink to="/auth/logIn" className="border-2 p-1 bg-theme rounded-md border-white hover:scale-[1.02] hover:bg-white/30">
                         LogIn
                     </NavLink>
                     <NavLink to="/auth/SigIn" className="border-2 p-1 bg-theme rounded-md border-white hover:scale-[1.02] hover:bg-white/30">

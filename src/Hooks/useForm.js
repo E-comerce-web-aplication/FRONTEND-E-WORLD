@@ -55,6 +55,7 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
 
     return {
         ...formState,
+        formState,
         onNextInput,
         disableButton,
         onInputChange, 

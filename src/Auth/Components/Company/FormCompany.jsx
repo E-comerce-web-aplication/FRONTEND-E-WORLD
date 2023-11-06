@@ -1,13 +1,13 @@
 
-import { CompanyForm } from "./Company/CompanyForm"
-import { EndForm } from "./EndForm"
-import { StoreForm } from "./Store/StoreForm"
-import { UserForm } from "./Company/UserForm"
-import { UserStoreForm } from "./Store/UserStoreForm"
-import { FormLayout } from "../../Layout/FormLayout"
+import { CompanyForm } from "./CompanyForm"
+import { EndForm } from "../EndForm"
+import { StoreForm } from "../Store/StoreForm"
+import { UserForm } from "./UserForm"
+import { UserStoreForm } from "../Store/UserStoreForm"
+import { FormLayout } from "../../../Layout/FormLayout"
 
-export const forms = {
-    step1: (
+export const FormsCompany = {
+    step0: (
         <FormLayout step={4}>
             <div className=" flex flex-col">
                 <h2 className="border-2 p-1 m-1 self-center w-80 text-center text-2xl rounded-lg
@@ -16,28 +16,28 @@ export const forms = {
             </div>
         </FormLayout>
     ),
-    step2:(
+    step1:(
         <FormLayout step={4}>
             <div className=" flex justify-center flex-col">
               <CompanyForm/>
             </div>
         </FormLayout>
     ),
-    step3:(
+    step2:(
         <FormLayout step={4}>
             <div className=" flex justify-center flex-col">
               <StoreForm/>
             </div>
         </FormLayout>
        ),
-    step4:(
+    step3:(
         <FormLayout step={4}>
             <div className=" flex justify-center flex-col">
               <UserStoreForm/>
             </div>
         </FormLayout>
     ),
-    step5:(
+    step4:(
         <div className="h-[100vh] flex justify-center flex-col">
           <EndForm/>
         </div>

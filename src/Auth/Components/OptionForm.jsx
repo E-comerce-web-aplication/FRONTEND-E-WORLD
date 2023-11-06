@@ -1,32 +1,54 @@
 import { BuildingOffice2Icon, BuildingStorefrontIcon } from "@heroicons/react/24/outline"
+import { useNavigate } from "react-router-dom"
 
 
 export const OptionForm = ()=>{
+
+    const navigate = useNavigate()
+
+    const onChangeCompanyRegisterPage = ()=>{
+        navigate({
+            pathname: '/auth/Register_Company'
+        })
+    } 
+
+    const onChangeStoreRegisterPage = ()=>{
+        navigate({
+            pathname: '/auth/Register_Store'
+        })
+    } 
+
     return (
         <div className="flex flex-col gap-2 mb-2">
-            <h2 className="border-2 p-1 text-2xl font-bold m-1 rounded-lg border-theme text-theme
+            <h2 className="self-center border-2 p-1 text-2xl font-bold m-1 rounded-lg text-center bg-black text-theme
             ">Escoge una opcion de interes</h2>
-            <section className="self-center flex flex-col gap-1 border-2  p-1 border-blue-800 rounded-md w-72
-            hover:scale-[1.02]">
-                <p className="font-bold text-lg p-1 border-b-2 border-blue-800 text-blue-800
-                text-center">Crear una tienda</p>
-                <button
-                type="button"
-                >
-                    <BuildingStorefrontIcon className="text-blue-800"/>
-                </button>
-            </section>
 
-            <section className="self-center flex flex-col gap-1 border-2 border-cyan-800 p-1 rounded-md w-72
+           <section
+           onClick={onChangeCompanyRegisterPage}
+           className="self-center flex flex-col gap-1 border-2 border-dashed border-theme p-1 rounded-md w-72
             hover:scale-[1.02]">
-                <p className="font-bold text-lg p-1 border-b-2 border-cyan-800 text-cyan-800 
+                <p className="font-bold text-lg p-1 border-b-2  text-theme bg-black rounded-md
                 text-center">Crear una compañia</p>
                 <button
                 type="button"
                 >
-                    <BuildingOffice2Icon className="text-cyan-800"/>
+                    <BuildingOffice2Icon className="text-theme"/>
                 </button>
             </section>
+
+            <section 
+            onClick={onChangeStoreRegisterPage}
+            className="self-center flex flex-col gap-1 border-2  p-1 rounded-md w-72
+            hover:scale-[1.02] border-dashed border-theme">
+                <p className="font-bold text-lg p-1 border-b-2
+                text-center bg-black text-theme rounded-md">Crear una tienda</p>
+                <button
+                type="button"
+                >
+                    <BuildingStorefrontIcon className="text-theme"/>
+                </button>
+            </section>
+            <p className="self-center text-center border-2 p-1 m-1 font-bold border-dashed rounded-md max-w-[18rem] border-black mb-5">Una vez que hayas creado tu organizacion no podras crear otra con el mismo usuario</p>
         </div>
     )
 }
