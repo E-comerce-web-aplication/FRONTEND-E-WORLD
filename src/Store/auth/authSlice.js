@@ -7,6 +7,7 @@ export const authSlice = createSlice({
    initialState: {
     status: 'no-registered',
     error: null,
+    organization: null,
     owner: {
         displayName: '',
         dateOfBirth: '',
@@ -41,7 +42,8 @@ export const authSlice = createSlice({
 
    reducers: {
       login: ( state, { payload } )=>{
-          state.status = 'authenticated'
+          state.status = payload.status
+          state.error = payload.error
       },
 
       register: ( state, { payload } )=>{
@@ -50,57 +52,50 @@ export const authSlice = createSlice({
       },
 
       finishedOwnerForm: ( state, { payload })=>{
-       
-        const itemOwner = state.owner
-
         state.owner = {
-            [itemOwner.displayName]: payload.displayName,
-            [itemOwner.dateOfBirth]: payload.dateOfBirth,
-            [itemOwner.email]: payload.email,
-            [itemOwner.password]: payload.password,
-            [itemOwner.biography]: payload.biography
+            displayName: payload.displayName,
+            dateOfBirth: payload.dateOfBirth,
+            email: payload.email,
+            password: payload.password,
+            biography: payload.biography
         }
        
       },
 
       finishedOrganizationForm: ( state, { payload } )=>{
-        const itemCompany = state.company
-
         state.company = {
-            [itemCompany.companyName]: payload.companyName,
-            [itemCompany.category]: payload.category,
-            [itemCompany.address]: payload.address,
-            [itemCompany.review]: payload.review,
-            [itemCompany.city]: payload.city,
-            [itemCompany.postalCode]: payload.postalCode,
-            [itemCompany.region]: payload.region
+            companyName: payload.companyName,
+            category: payload.category,
+            address: payload.address,
+            review: payload.review,
+            city: payload.city,
+            postalCode: payload.postalCode,
+            region: payload.region
         }
       },
 
       finishedStoreForm: ( state, { payload } )=>{
-        const itemStore = state.store
-
         state.store = {
-            [itemStore.storeName]: payload.storeName,
-            [itemStore.address]: payload.address,
-            [itemStore.review]: payload.review,
-            [itemStore.city]: payload.city,
-            [itemStore.postalCode]: payload.postalCode,
-            [itemStore.region]: payload.region
+            storeName: payload.storeName,
+            address: payload.address,
+            review: payload.review,
+            city: payload.city,
+            postalCode: payload.postalCode,
+            region: payload.region
         }
 
       },
 
       finishedUserStoreForm: ( state, { payload } )=>{
-        const itemUserStore = state.userStore
-
         state.userStore = {
-            [itemUserStore.userName]: payload.userName,
-            [itemUserStore.email]: payload.email,
-            [itemUserStore.password]: payload.password,
-            [itemUserStore.role]: payload.role
+            userName: payload.userName,
+            email: payload.email,
+            password: payload.password,
+            role: payload.role
         }
-
+      },
+      storeOrCompanyRegister: ( state, { payload } )=>{
+        state.organization = payload.organization
       }
     },
 })
@@ -111,6 +106,7 @@ export const {
     finishedOrganizationForm, 
     finishedUserStoreForm, 
     finishedStoreForm, 
-    register
+    register,
+    storeOrCompanyRegister
 } = authSlice.actions
 

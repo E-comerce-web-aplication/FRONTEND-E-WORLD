@@ -1,18 +1,24 @@
 import { BuildingOffice2Icon, BuildingStorefrontIcon } from "@heroicons/react/24/outline"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { StoreOrCompanyOptionForm } from "../../Store/auth/thunks"
 
 
 export const OptionForm = ()=>{
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const onChangeCompanyRegisterPage = ()=>{
+
+        dispatch( StoreOrCompanyOptionForm({ organization: 'company' }) )
         navigate({
             pathname: '/auth/Register_Company'
         })
     } 
 
     const onChangeStoreRegisterPage = ()=>{
+        dispatch( StoreOrCompanyOptionForm({ organization: 'store' }) )
         navigate({
             pathname: '/auth/Register_Store'
         })

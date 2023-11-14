@@ -1,5 +1,5 @@
 import { IndexCompanyForm } from "../Components/Company/IndexCompanyForm"
-import { ProductContext, ProductProvider } from "../../Products/Context/ProductContext"
+import {  ProductProvider } from "../../Products/Context/ProductContext"
 import {  useState } from "react"
 
 
@@ -13,15 +13,12 @@ export const RegisterCompanyPage = ()=>{
         step4: false
     })
 
+
     const onChangeNextStep = (step)=>{
         setNextStep({
             ...nextStep,
             [`step${step}`]: true 
         })
-    }
-
-    const onInputChange = ({ target })=>{
-       
     }
 
     return (

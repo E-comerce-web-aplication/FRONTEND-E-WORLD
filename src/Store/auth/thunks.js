@@ -1,22 +1,22 @@
-import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm, finishedUserStoreForm, register} from "./authSlice"
+import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm, finishedUserStoreForm, register, storeOrCompanyRegister} from "./authSlice"
 
 
-const urlAPI = 'http://localhost:3000/api/v1/auth/register_company'
+const urlAPI = 'http://localhost:3000/api/v1/auth'
 
-export const RegisterCompany = ( data )=>{
+export const RegisterCompany = ( ownerCompany )=>{
 
     return async ( dispatch )=>{
 
        try {
-        const req = await fetch(urlAPI, {
+        const req = await fetch(`${urlAPI}/register_company`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify( data )
+            body: JSON.stringify( ownerCompany.data )
         })
 
-        const data = req.json()
+        const data = await req.json()
 
         dispatch( register({
             status: 'registered',
@@ -32,48 +32,64 @@ export const RegisterCompany = ( data )=>{
     }
 }
 
+export const loginRegister = ( data )=>{
+    return async ( dispatch )=>{
+        try {
+            const res = await fetch( `${urlAPI}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify( data )
+            } )
+            const dataBack = await res.json()
+            console.log(dataBack)
+            dispatch({
+                status: 'authenticated',
+                error: null
+            })
+        } catch (error) {
+            dispatch({
+                status: 'no-authenticated',
+                error: error
+            })
+        }
+
+    }
+}
+
 export const finalizatedOwnerForm = (data)=>{
    
-    return ( dispatch, getState )=>{ 
+    return ( dispatch )=>{ 
 
-        const state = getState()
-        dispatch( finishedOwnerForm({
-            ...state.auth,
-            owner: data
-        }) )
+        dispatch( finishedOwnerForm(data) )
     }
 }
 
 export const finalizatedOrganizationForm = (data)=>{
     
-    return ( dispatch, getState )=>{
+    return ( dispatch )=>{
 
-        const state = getState()
-        
-        dispatch(finishedOrganizationForm({
-            ...state.auth,
-            company: data
-        }))
+        dispatch(finishedOrganizationForm(data))
     }
 }
 
 export const finalizatedStoreForm = (data)=>{
-    return ( dispatch, getState )=>{
-        const state = getState()
-        dispatch(finishedStoreForm({
-            ...state.auth,
-            store: data
-        }))
+    return ( dispatch )=>{
+
+        dispatch(finishedStoreForm(data))
     }
 }
 
 export const finalizatedUserStoreForm = (data)=>{
-    return (dispatch, getState)=>{
-        const state = getState()
+    return (dispatch )=>{
 
-        dispatch(finishedUserStoreForm({
-            ...state.auth,
-            userStore: data
-        }) )
+        dispatch(finishedUserStoreForm(data))
+    }
+}
+
+export const StoreOrCompanyOptionForm = (data)=>{
+    return (dispatch )=>{
+        dispatch(storeOrCompanyRegister( data ))
     }
 }

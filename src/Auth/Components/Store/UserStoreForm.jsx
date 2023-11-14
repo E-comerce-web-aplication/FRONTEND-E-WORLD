@@ -94,7 +94,7 @@ export const UserStoreForm = ()=>{
                     </select>
              </div>
             <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80">
-               <NextButton disableButton={disableButton} next={4} onFinalizatedForm={onFinalizatedForm} nextRef={buttonRef} />    
+               <NextButton   disableButton={disableButton} next={4} onFinalizatedForm={onFinalizatedForm} nextRef={buttonRef} />    
             </section>
         </section>
     )

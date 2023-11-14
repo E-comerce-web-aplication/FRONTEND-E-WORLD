@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { NextButton } from "../../../Common/Components/NextButton"
 import { finalizatedOrganizationForm } from "../../../Store/auth/thunks"
 import { useForm } from "../../../Hooks/useForm"
@@ -27,6 +27,9 @@ const formValidation = {
 }
 
 export const CompanyForm = ()=>{
+
+    const { organization } = useSelector( state => state.auth )
+
     const buttonRef = useRef()
     const companyNameRef = useRef()
     const reviewRef = useRef()
@@ -43,6 +46,16 @@ export const CompanyForm = ()=>{
         setDisableButton(false)
     },[])
 
+    const [categories,setCategories] = useState([])
+
+    useEffect(()=>{
+        return async ()=>{
+            const res = await fetch("http://localhost:3000/api/v1/organization/categories")
+            const data = await res.json()
+            setCategories(data)
+        }
+    }, [])
+
     const dispatch = useDispatch()
 
     const onFinalizatedForm = ()=>{
@@ -53,12 +66,12 @@ export const CompanyForm = ()=>{
     return (
         <section className="flex flex-col">
             <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">
-                Informacion de tu compañia
+                { `Informacion de tu  ${ organization === 'company' ? 'compañia' : 'tienda'  }` }
             </h2>
             <section className="flex flex-col gap-1">
                 <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[11.65rem] z-10'>
-                        Nombre de la compañia 
+                        { `Nombre de la  ${ organization === 'company' ? 'compañia' : 'tienda'  }` }
                     </label>
                     <input
                         name='companyName'
@@ -72,25 +85,29 @@ export const CompanyForm = ()=>{
                         h-12 pl-2 font-bold text-black/50'/>
                 </div>
                
-                <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-36 z-10'>
-                        Tipo de compañia
-                    </label>
-                    <select 
-                    name='category'
-                    value={category}
-                    onChange={onInputChange}
-                    ref={categoryRef}
-                    onKeyDown={(e)=>onNextInput(e, reviewRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12
-                     pl-2 font-bold text-black/50 bg-white' id="">
-                       <option >Productos varios</option>  
-                       <option >Productos cosmeticos</option>   
-                       <option >Productos electronicos</option>   
-                       <option >Productos limpieza</option>    
-                    </select>
-                
-                </div>
+                {
+                    organization === 'company' && (
+                        <div className='flex flex-col self-center w-80'>
+                            <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-36 z-10'>
+                                Tipo de compañia
+                            </label>
+                            <select 
+                            name='category'
+                            value={category}
+                            onChange={onInputChange}
+                            ref={categoryRef}
+                            onKeyDown={(e)=>onNextInput(e, reviewRef)}
+                            className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12
+                            pl-2 font-bold text-black/50 bg-white' id="">
+                            {
+                                categories.map((category)=>(
+                                    <option key={category.id}>{category.categoryName}</option>
+                                ))
+                            }    
+                            </select>
+                        </div>
+                    )
+                }
                 <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-16 z-10'>
                         Reseña

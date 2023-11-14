@@ -1,18 +1,24 @@
 import { NavLink} from "react-router-dom"
 import { ShopiLogo } from '../../icons/ShopiLogo'
-import { useSelector } from "react-redux"
-
+import { useDispatch, useSelector } from "react-redux"
+import { RegisterCompany } from "../../Store/auth/thunks"
+import { useEffect } from "react"
 
 
 export const EndForm = ()=>{
     const { owner, company, store, userStore } = useSelector( state => state.auth )
 
-    console.log( {
-        owner: owner,
-        company: company,
-        store: store,
-        userStore: userStore
-    })
+    const dispatch = useDispatch()
+    
+    useEffect(()=>{
+        dispatch( RegisterCompany( {
+            owner: owner,
+            company: company,
+            store: store,
+            userStore: userStore
+        }))
+    },[ ])
+    
 
     return (
         <section className="flex flex-col gap-2">

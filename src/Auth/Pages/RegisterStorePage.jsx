@@ -1,21 +1,32 @@
+import { useState } from "react"
 import { ProductProvider } from "../../Products/Context/ProductContext"
-import { IndexForm } from "../Components/IndexForm"
+import { IndexStoreForm } from "../Components/Store/IndexStoreForm"
 
 
 
 export const RegisterStorePage = ()=>{
 
-    const onInputChange = ({ target })=>{
-       
-    }
+    const [ nextStep, setNextStep ] = useState({
+        step1: false,
+        step2: false,
+        step3: false,
+        step4: false
+    })
 
+    
+    const onChangeNextStep = (step)=>{
+        setNextStep({
+            ...nextStep,
+            [`step${step}`]: true 
+        })
+    }
     
 
   
     return (
         <ProductProvider>
             <main className="flex flex-col justify-center">
-              <IndexForm nextForm={0}/>
+              <IndexStoreForm onChangeNextStep={onChangeNextStep}/>
             </main>
         </ProductProvider>
     )

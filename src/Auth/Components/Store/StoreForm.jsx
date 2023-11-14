@@ -125,7 +125,7 @@ export const StoreForm = ()=>{
                 </section>
             </section>
             <div className="flex flex-col mt-2 self-center w-80">
-             <NextButton onFinalizatedForm={onFinalizatedForm}  disableButton={disableButton} nextRef={buttonRef} next={3} />
+             <NextButton  onFinalizatedForm={onFinalizatedForm}  disableButton={disableButton} nextRef={buttonRef} next={3} />
             </div>
         </section>
     )
