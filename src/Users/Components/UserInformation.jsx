@@ -1,24 +1,44 @@
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { ownerInformation } from "../../Store/users/thunks"
+import { useState } from "react"
 
 
 
 export const UserInformation = ()=>{
+
+    const dispatch = useDispatch()
+    const { token, organization } = useSelector( state => state.auth )
+    
+    useEffect(()=>{
+        dispatch( ownerInformation( token ) )
+    }, [])
+
+    const { userOwner } = useSelector( state => state.user )
+
     return (
         <section className="self-center flex flex-col">
-            <h2 className="border-b-2 border-black font-bold p-1 m-1 text-lg">Kalet Adonay Chavez</h2>
-            <section className="flex">
-                <div className="h-10 p-1 pt-[6px] m-1 border-2 rounded-md border-blue-500">
-                    <p className="font-semibold text-blue-500">Owner by Fresh</p>
-                </div>
-                <div className="p-1 flex flex-col gap-1">
-                    <p className="flex gap-1 border-2 rounded-lg">
-                        <span className="self-center font-semibold">User by: </span>
-                        <span className="font-semibold p-1">12/23/2004</span>
+            <h2 className="border-b-2 font-bold p-1 m-1 text-xl border-blue-950 text-blue-950">{ userOwner.displayName }</h2>
+            <p className="p-1 border-2 rounded-lg m-2 font-semibold text-center border-blue-500 text-blue-500 hover:scale-[1.02]"> Owner by { userOwner.companyOwner.companyName } </p>
+            <section className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 p-1 ml-2 border-2 rounded-md">
+                    <h2 className="border-b-2 text-center text-lg font-bold">Informacion personal</h2>
+                    <p className="flex flex-row gap-1">
+                        <span>Email:</span>
+                        <span className="">{ userOwner.email }</span> 
                     </p>
-                    <p className="flex flex-col gap-1 border-2 rounded-md">
-                        <span className="font-semibold border-b-2 text-center">About me</span>
-                        <span className="max-w-[10rem] p-1 text-sm font-semibold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat esse maiores consectetur itaque</span>
+                    <p className="flex flex-row gap-1">
+                        <span>Cumpleaños:</span>
+                        <span className="">{ userOwner.dateOfBirth }</span> 
                     </p>
+                    <div className="border-2 p-1 rounded-md">
+                        <h2 className="text-center border-b-2 text-lg font-bold">Biografia</h2>
+                        <p className="p-1 font-medium">
+                        { userOwner.biography }
+                        </p>
+                    </div>
                 </div>
+               
             </section>
         </section>
     )

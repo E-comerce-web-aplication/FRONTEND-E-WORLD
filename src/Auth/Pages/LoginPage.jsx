@@ -1,8 +1,8 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useNavigate } from "react-router-dom"
 import { ShopiLogo } from '../../icons/ShopiLogo'
 import { useForm } from '../../Hooks/useForm'
-import { useRef } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { loginRegister } from "../../Store/auth/thunks"
 
 const items = {
@@ -17,8 +17,11 @@ const formValidation = {
 
 export const LoginPage = ()=>{
 
-    const dispatch = useDispatch()
+    const [ openProcessing, setOpenProcessing ] = useState(false)
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
     const emailRef = useRef()
     const passwordRef = useRef()
     const buttonRef = useRef()
@@ -26,11 +29,27 @@ export const LoginPage = ()=>{
     const { email, password, onNextInput, onInputChange } = useForm( items, formValidation )
 
     const login = ()=>{
+        setOpenProcessing(true)
         dispatch(loginRegister( {
             email: email,
             password: password
         } ) )
     }
+
+    const { status } = useSelector( state => state.auth )
+    
+    useEffect(()=>{
+        if( status == 'authenticated' ){
+            setTimeout(()=>{
+                setOpenProcessing(false)
+                navigate({
+                    pathname: '/'
+                })
+            },2000)
+        }
+    }, [ status ])
+
+
 
     return (
         <main className="flex justify-center">
@@ -73,14 +92,22 @@ export const LoginPage = ()=>{
                 <button 
                  ref={buttonRef}
                  onClick={login}
-                 className="bg-theme text-white rounded-lg font-bold h-10 text-xl">Login</button>    
+                 className="bg-theme text-white rounded-lg font-bold h-10 text-xl focus:outline-none">Login</button>    
                 <section>
-                    <p className="flex flex-col">
+                <p className="flex flex-col">
                         <span className="font-bold text-sm">Aun no tienes una cuenta?</span>
                         <Link to="/auth/SigIn" className="font-bold text-sm underline text-blue-500 cursor-pointer hover:text-yellow-500">Registrate aqui</Link>
                     </p>
                 </section>
             </div>
+            {
+                openProcessing == true && (
+                    <div className="absolute flex flex-col gap-4 border-2 z-10 bg-white p-2 top-36 h-64 w-64 rounded-lg justify-center">
+                    <div className="self-center basis-1/2 h-[7.5rem] w-[7.5rem] animate-loading rounded-full border-[6px] "></div>
+                        <p className="self-center text-lg text-green-600">procesando</p>
+                    </div>
+                )
+            }
         </main>
     )
 }

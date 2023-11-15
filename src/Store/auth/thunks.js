@@ -1,4 +1,5 @@
-import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm, finishedUserStoreForm, register, storeOrCompanyRegister} from "./authSlice"
+import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm,
+     finishedUserStoreForm, login, register, storeOrCompanyRegister} from "./authSlice"
 
 
 const urlAPI = 'http://localhost:3000/api/v1/auth'
@@ -17,7 +18,7 @@ export const RegisterCompany = ( ownerCompany )=>{
         })
 
         const data = await req.json()
-
+        
         dispatch( register({
             status: 'registered',
             error: null
@@ -43,16 +44,16 @@ export const loginRegister = ( data )=>{
                 body: JSON.stringify( data )
             } )
             const dataBack = await res.json()
-            console.log(dataBack)
-            dispatch({
+            dispatch( login({
                 status: 'authenticated',
+                token: dataBack.token,
                 error: null
-            })
+            }))
         } catch (error) {
-            dispatch({
+            dispatch( login({
                 status: 'no-authenticated',
                 error: error
-            })
+            }))
         }
 
     }
