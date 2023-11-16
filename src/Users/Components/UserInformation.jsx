@@ -19,7 +19,7 @@ export const UserInformation = ()=>{
     return (
         <section className="self-center flex flex-col">
             <h2 className="border-b-2 font-bold p-1 m-1 text-xl border-blue-950 text-blue-950">{ userOwner.displayName }</h2>
-            <p className="p-1 border-2 rounded-lg m-2 font-semibold text-center border-blue-500 text-blue-500 hover:scale-[1.02]"> Owner by { userOwner.companyOwner.companyName } </p>
+            <p className="p-1 border-2 rounded-lg m-2 font-semibold text-center border-blue-500 text-blue-500 hover:scale-[1.02]"> Owner by { userOwner?.companyOwner?.companyName } </p>
             <section className="flex flex-col gap-1">
                 <div className="flex flex-col gap-1 p-1 ml-2 border-2 rounded-md">
                     <h2 className="border-b-2 text-center text-lg font-bold">Informacion personal</h2>
