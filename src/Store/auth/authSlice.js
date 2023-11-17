@@ -23,7 +23,7 @@ export const authSlice = createSlice({
         postalCode: '',
         city: '',
         region: '',
-        category: 2
+        category: null
     },
     store: {
         storeName: '',
@@ -34,10 +34,10 @@ export const authSlice = createSlice({
         postalCode: ''
     },
     userStore: {
-        userName: '',
+        displayName: '',
         email: '',
         password: '',
-        role: ''
+        role: null
     }
    },
 
@@ -72,7 +72,8 @@ export const authSlice = createSlice({
             review: payload.review,
             city: payload.city,
             postalCode: payload.postalCode,
-            region: payload.region
+            region: payload.region,
+            category: payload.category
         }
       },
 
@@ -90,7 +91,7 @@ export const authSlice = createSlice({
 
       finishedUserStoreForm: ( state, { payload } )=>{
         state.userStore = {
-            userName: payload.userName,
+            displayName: payload.displayName,
             email: payload.email,
             password: payload.password,
             role: payload.role

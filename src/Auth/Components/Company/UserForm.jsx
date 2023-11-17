@@ -21,9 +21,9 @@ const validationForm = {
     surname: [( value )=> value?.trim().length > 0],
     secondSurname: [( value )=> value?.trim().length > 0],
     email: [( value )=> value?.trim().length > 0],
-    password: [( value )=> value?.trim().length > 0],
+    password: [( value )=> value?.trim().length > 0 && value?.length > 7],
     dateOfBirth: [( value )=> value?.trim().length > 0],
-    description: [( value )=> value?.trim().length > 0]
+    description: [( value )=> value?.trim().length > 60]
 }
 
 
@@ -54,7 +54,6 @@ export const UserForm = ()=>{
             biography: description
         }) )
     }
-
 
     return (
         <form 

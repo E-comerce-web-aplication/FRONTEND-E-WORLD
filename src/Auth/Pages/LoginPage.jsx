@@ -103,7 +103,7 @@ export const LoginPage = ()=>{
             {
                 openProcessing == true && (
                     <div className="absolute flex flex-col gap-4 border-2 z-10 bg-white p-2 top-36 h-64 w-64 rounded-lg justify-center">
-                    <div className="self-center basis-1/2 h-[7.5rem] w-[7.5rem] animate-loading rounded-full border-[6px] "></div>
+                    <div className="self-center basis-1/2 h-[7.3rem] w-[7.3rem] animate-loading rounded-full border-[20px] "></div>
                         <p className="self-center text-lg text-green-600">procesando</p>
                     </div>
                 )

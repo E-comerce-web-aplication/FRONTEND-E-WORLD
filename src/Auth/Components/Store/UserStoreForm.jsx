@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { NextButton } from "../../../Common/Components/NextButton"
 import { finalizatedUserStoreForm } from "../../../Store/auth/thunks"
 import { useForm } from "../../../Hooks/useForm"
@@ -6,20 +6,29 @@ import { useDispatch } from "react-redux"
 
 
 const initialState = {
-    userName: '',
+    displayName: '',
     email: '',
     password: '',
     role: 'Administrador'
 }
 
 const validationForm = {
-    userName: [(value)=>value?.trim().length > 0 ],
+    displayName: [(value)=>value?.trim().length > 0 ],
     email: [( value )=> value?.trim().length > 0],
-    password: [( value )=> value?.trim().length > 0],
+    password: [( value )=> value?.trim().length > 7],
     role: [( value )=> value?.trim().length > 0]
 }
 
 export const UserStoreForm = ()=>{
+    const [ roles, setRoles ] = useState([])
+
+    useEffect(()=>{ 
+        return async ()=>{
+            const req = await fetch('http://localhost:3000/api/v1/roles/default')
+            const res = await req.json()
+            setRoles(res)
+        }
+    },[ ])
 
     const buttonRef = useRef()
     const userNameRef = useRef()
@@ -27,7 +36,7 @@ export const UserStoreForm = ()=>{
     const passwordRef = useRef()
     const roleRef = useRef()
 
-    const { userName, email, password, role, onInputChange, onNextInput, disableButton,
+    const { displayName, email,role, password, onInputChange, onNextInput, disableButton,
            setDisableButton, formState} = useForm( initialState, validationForm )
 
     useEffect(()=>{
@@ -39,7 +48,7 @@ export const UserStoreForm = ()=>{
     const onFinalizatedForm = ()=>{
         dispatch( finalizatedUserStoreForm(formState) )
     }
-
+    console.log(role)
     return (
         <section className="flex flex-col">
             <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu tienda</h2>
@@ -48,8 +57,8 @@ export const UserStoreForm = ()=>{
                         Nombre del usurio
                         </label>
                     <input
-                        name='userName'
-                        value={userName}
+                        name='displayName'
+                        value={displayName}
                         onChange={onInputChange}
                         ref={userNameRef}
                         onKeyDown={(e)=>onNextInput(e, emailRef)}
@@ -85,12 +94,19 @@ export const UserStoreForm = ()=>{
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.86rem] z-10'>Role de usuario</label>
                     <select
                     name='role'
-                    value={role}
                     onChange={onInputChange}
                     ref={roleRef}
                     onKeyDown={(e)=>onNextInput(e, buttonRef)}
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 bg-white' id="">
-                       <option >Administrador</option>     
+                        <option>...elegir un role</option>
+                       {
+                        roles.map((role)=>(
+                            <option
+                            value={role.id}
+                            key={role.id} >{ role.roleName }</option> 
+                        ))
+                       }    
+                      
                     </select>
              </div>
             <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80">

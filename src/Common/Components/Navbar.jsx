@@ -11,6 +11,7 @@ import { AuthenticatedProfile } from "./AuthenticatedComponents"
 export const Navbar = ()=>{
 
     const { status } = useSelector( state => state.auth )
+    const { organizationSession } = useSelector( state => state.user )
     
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ openModal, setOpenModal ] = useState(false)
@@ -31,10 +32,14 @@ export const Navbar = ()=>{
                    <ShopiLogo whereIcon="menu" color="white"/>
                 </NavLink>
                 <AuthenticatedProfile status={status}/>
-                <NavLink onClick={()=>setOpenModal(!openModal)} className="self-center hover:scale-[1.02]">
-                    <span className="absolute text-black/9s0 font-bold">0</span>
-                   <ShoppingBagIcon className="text-white h-10"/>
-                </NavLink>
+                {
+                    (organizationSession === "store" || organizationSession === "storeOfCompany") && (
+                        <NavLink onClick={()=>setOpenModal(!openModal)} className="self-center hover:scale-[1.02]">
+                            <span className="absolute text-black/9s0 font-bold">0</span>
+                        <ShoppingBagIcon className="text-white h-10"/>
+                        </NavLink>
+                    )
+                }
             </div>
 
             <div className={`${openMenu === true ? "absolute z-20 flex flex-col bg-theme w-full top-[4.1rem]" : "hidden sm:block"} pt-2`}>
@@ -74,6 +79,20 @@ export const Navbar = ()=>{
                             Compras
                         </NavLink>
                     </li>
+                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
+                        <NavLink to="/company">
+                            Compañias
+                        </NavLink>
+                    </li>
+                    {
+                        organizationSession === "store" && (
+                            <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
+                                <NavLink to="/company">
+                                    Compañias
+                                </NavLink>
+                            </li>
+                        )
+                    }
                </div>
               <ChevronDoubleUpIcon onClick={onCloseMenu} className="mt-2 self-center h-9 text-theme bg-white w-full border-2 border-theme cursor-pointer sm:hidden"/>
              {

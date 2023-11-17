@@ -6,17 +6,39 @@ import { AuthRouter } from "../Auth"
 import { OrderRouter } from "../Orders"
 import { InventoryRouter } from "../Inventory"
 import { RegisterRouter } from "../Registers/Router/RegisterRouter"
+import { PrivateRouter } from "./PrivateRouter"
+import { CompanyRouter } from "../Companies"
 
 export const RouterApp = ()=>{
     return (
         <Routes>
             <Route path="/" element={<CommonRouter/>}/>
             <Route path="/auth/*" element={<AuthRouter/>}/>
-            <Route path="/products/*" element={<ProductRouter/>}/>
-            <Route path="/users/*" element={<UserRouter/>}/>
-            <Route path="/orders/*" element={<OrderRouter/>}/>
+
+            <Route path="/products/*" element={
+                <PrivateRouter>
+                    <ProductRouter/>
+                </PrivateRouter>
+            }/>
+            <Route path="/users/*" element={
+                <PrivateRouter>
+                    <UserRouter/>
+                </PrivateRouter>
+            }/>
+            <Route path="/orders/*" element={
+                <PrivateRouter>
+                    <OrderRouter/>
+                </PrivateRouter>
+            }/>
             <Route path="/registers/*" element={<RegisterRouter/>}/>
             <Route path="/inventory/*" element={<InventoryRouter/>}/>
+
+            <Route path="/company/*" element={
+                // <PrivateRouter>
+                //     <CompanyRouter/>
+                // </PrivateRouter>
+                <CompanyRouter/>
+            }/>
         </Routes>
     )
 }

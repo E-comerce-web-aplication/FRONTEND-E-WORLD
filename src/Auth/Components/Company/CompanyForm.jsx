@@ -17,12 +17,12 @@ const initialState = {
 }
 
 const formValidation = {
-    companyName: [(value)=>value?.trim().length > 0 ],
-    review: [(value)=>value?.trim().length > 0 ],
-    address: [(value)=>value?.trim().length > 0 ],
+    companyName: [(value)=>value?.trim().length > 4 ],
+    review: [(value)=>value?.trim().length > 25 ],
+    address: [(value)=>value?.trim().length > 25 ],
     postalCode: [(value)=>value?.length > 0 ],
-    city: [(value)=>value?.trim().length > 0 ],
-    region: [(value)=>value?.trim().length > 0 ],
+    city: [(value)=>value?.trim().length > 4 ],
+    region: [(value)=>value?.trim().length > 4 ],
     category: [(value)=>value?.trim().length > 0 ]
 }
 
@@ -62,7 +62,6 @@ export const CompanyForm = ()=>{
         dispatch(finalizatedOrganizationForm(formState))
     }
 
-
     return (
         <section className="flex flex-col">
             <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">
@@ -93,15 +92,16 @@ export const CompanyForm = ()=>{
                             </label>
                             <select 
                             name='category'
-                            value={category}
                             onChange={onInputChange}
                             ref={categoryRef}
                             onKeyDown={(e)=>onNextInput(e, reviewRef)}
                             className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12
-                            pl-2 font-bold text-black/50 bg-white' id="">
+                            pl-2 font-bold text-black/50 bg-white' >
                             {
                                 categories.map((category)=>(
-                                    <option key={category.id}>{category.categoryName}</option>
+                                    <option
+                                    value={category.id}
+                                    key={category.id}>{category.categoryName}</option>
                                 ))
                             }    
                             </select>

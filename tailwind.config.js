@@ -18,13 +18,16 @@ export default {
 
         'loading': {
           '0%': { transform: 'rotate(0deg)', borderColor: 'transparent' },
-          '50%': { transform: 'rotate(180deg)', borderColor: 'green' },
+          '20%': { transform: 'rotate(72deg)', borderColor: 'green' },
+          '40%': { transform: 'rotate(144deg)', borderColor: 'transparent' },
+          '60%': { transform: 'rotate(216deg)', borderColor: 'green' },
+          '80%': { transform: 'rotate(288deg)', borderColor: 'green' },
           '100%': { transform: 'rotate(360deg)', borderColor: 'transparent' }
         }
       },
       animation: {
         'progress': 'progress-bar 1s ease',
-        'loading': 'loading 3s linear infinite'
+        'loading': 'loading 10s linear infinite'
       }
     },
   },

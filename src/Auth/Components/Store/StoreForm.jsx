@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux"
 
 const initialState = {
     storeName: '',
-    review: '',
     address: '',
     region: '',
     city: '',
@@ -15,11 +14,10 @@ const initialState = {
 }
 
 const validationForm = {
-    storeName: [(value)=>value?.trim().length > 0 ],
-    review: [( value )=> value?.trim().length > 0],
-    address: [( value )=> value?.trim().length > 0],
-    region: [( value )=> value?.trim().length > 0],
-    city: [( value )=> value?.trim().length > 0],
+    storeName: [(value)=>value?.trim().length > 4 ],
+    address: [( value )=> value?.trim().length > 25],
+    region: [( value )=> value?.trim().length > 4],
+    city: [( value )=> value?.trim().length > 4],
     postalCode: [( value )=> value?.length > 0]
 }
 
@@ -27,13 +25,12 @@ export const StoreForm = ()=>{
 
     const buttonRef = useRef()
     const storeNameRef = useRef()
-    const reviewRef = useRef()
     const addressRef = useRef()
     const regionRef = useRef()
     const cityRef = useRef()
     const postalCodeRef = useRef()
 
-    const { storeName, review, address, region, city, postalCode, onInputChange, onNextInput,
+    const { storeName, address, region, city, postalCode, onInputChange, onNextInput,
            disableButton, setDisableButton, formState } = useForm( initialState, validationForm )
 
     useEffect(()=>{
@@ -57,21 +54,10 @@ export const StoreForm = ()=>{
                         value={storeName}
                         ref={storeNameRef}
                         onChange={onInputChange}
-                        onKeyDown={(e)=>onNextInput(e, reviewRef)}
+                        onKeyDown={(e)=>onNextInput(e, addressRef)}
                         type="text"
                         placeholder='Company inc.' 
                         className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
-                </div>
-                <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-16 z-10'>Reseña</label>
-                    <textarea
-                    name='review'
-                    value={review}
-                    ref={reviewRef}
-                    onChange={onInputChange}
-                    onKeyDown={(e)=>onNextInput(e, addressRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50'>
-                    </textarea>
                 </div>
                 <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-20 z-10'>Direccion</label>

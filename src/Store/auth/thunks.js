@@ -1,3 +1,4 @@
+import { loadSession } from "../users/userSlice"
 import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm,
      finishedUserStoreForm, login, register, storeOrCompanyRegister} from "./authSlice"
 
@@ -14,17 +15,18 @@ export const RegisterCompany = ( ownerCompany )=>{
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify( ownerCompany.data )
+            body: JSON.stringify( ownerCompany )
         })
 
         const data = await req.json()
-        
+        console.log(data)
         dispatch( register({
             status: 'registered',
-            error: null
+            error: data.error
         }) )
 
        } catch (error) {
+        console.log(error)
         dispatch( register({
             status: 'no-registered',
             error: error
@@ -49,6 +51,10 @@ export const loginRegister = ( data )=>{
                 token: dataBack.token,
                 error: null
             }))
+
+            dispatch( loadSession({
+                organizationSession: dataBack.session
+             }) )
         } catch (error) {
             dispatch( login({
                 status: 'no-authenticated',
@@ -71,7 +77,10 @@ export const finalizatedOrganizationForm = (data)=>{
     
     return ( dispatch )=>{
 
-        dispatch(finishedOrganizationForm(data))
+        dispatch(finishedOrganizationForm({
+            ...data,
+            category: parseInt(data.category)
+        }))
     }
 }
 
@@ -85,7 +94,10 @@ export const finalizatedStoreForm = (data)=>{
 export const finalizatedUserStoreForm = (data)=>{
     return (dispatch )=>{
 
-        dispatch(finishedUserStoreForm(data))
+        dispatch(finishedUserStoreForm({
+            ...data,
+            role: parseInt(data.role)
+        }))
     }
 }
 
