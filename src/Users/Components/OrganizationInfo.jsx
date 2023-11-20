@@ -6,13 +6,13 @@ import { useSelector } from "react-redux"
 
 export const OrganizationInfo = ()=>{
 
-    const [ organization, setOrganization ] = useState(null)
+    const [ organization, setOrganization ] = useState({})
 
     const { userOwner , userStore } = useSelector( state => state.user )
 
     useEffect(()=>{
-        if( userOwner.companyOwner !== null ){
-            setOrganization({
+        if( userOwner?.companyOwner != null){
+            return setOrganization({
                 name: userOwner?.companyOwner?.companyName,
                 region:userOwner?.companyOwner?.region,
                 city: userOwner?.companyOwner?.city,
@@ -20,8 +20,8 @@ export const OrganizationInfo = ()=>{
                 address: userOwner?.companyOwner?.address,
                 review: userOwner?.companyOwner?.review
             })
-        }else if( userOwner.storeOwner !== null){
-            setOrganization({
+        }else if( userOwner?.storeOwner != null ){
+            return setOrganization({
                 name: userOwner?.storeOwner?.storeName,
                 region:userOwner?.storeOwner?.region,
                 city: userOwner?.storeOwner?.city,
@@ -32,7 +32,7 @@ export const OrganizationInfo = ()=>{
         }
 
         if( userStore !== null ){
-            setOrganization({
+            return setOrganization({
                 name: userStore?.belongingStore?.storeName,
                 region:userStore?.belongingStore?.region,
                 city: userStore?.belongingStore?.city,
@@ -41,8 +41,8 @@ export const OrganizationInfo = ()=>{
                 review: userStore?.belongingStore?.review
             })
         }
-    }, [ userOwner ])
-    
+    }, [ userOwner, userStore ])
+
     return (
         <section className="flex flex-col gap-1">
             <h2 className="font-bold text-center border-2 text-lg m-2 p-1 rounded-lg">{organization?.name} {userOwner?.storeOrCompany} Information</h2>

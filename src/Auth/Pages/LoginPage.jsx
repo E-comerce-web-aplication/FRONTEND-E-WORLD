@@ -1,4 +1,5 @@
 import { NavLink, Link, useNavigate } from "react-router-dom"
+import { CheckBadgeIcon } from "@heroicons/react/24/outline"
 import { ShopiLogo } from '../../icons/ShopiLogo'
 import { useForm } from '../../Hooks/useForm'
 import { useEffect, useRef, useState } from "react"
@@ -18,6 +19,7 @@ const formValidation = {
 export const LoginPage = ()=>{
 
     const [ openProcessing, setOpenProcessing ] = useState(false)
+    const [openMessageError, setOpenMessageError ] = useState(false)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -36,7 +38,7 @@ export const LoginPage = ()=>{
         } ) )
     }
 
-    const { status } = useSelector( state => state.auth )
+    const { status, error } = useSelector( state => state.auth )
     
     useEffect(()=>{
         if( status == 'authenticated' ){
@@ -45,10 +47,15 @@ export const LoginPage = ()=>{
                 navigate({
                     pathname: '/'
                 })
-            },2000)
+            },1000)
         }
-    }, [ status ])
-
+        if( status === 'no-authenticated'){
+            setTimeout(()=>{
+                setOpenProcessing(false)
+                setOpenMessageError(true)
+            },500)
+        }
+    }, [ error ])
 
 
     return (
@@ -88,6 +95,13 @@ export const LoginPage = ()=>{
                             className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg 
                             h-12 pl-2 font-bold text-black/50'/>
                     </div>
+                    {
+                        openMessageError && (
+                            <span className="border-2 p-1 m-1 font-bold text-red-600 text-center 
+                            rounded-lg border-red-600 border-dashed">Credenciales invalidas!!</span>
+                        )
+                    }
+                
                 </form>
                 <button 
                  ref={buttonRef}
@@ -103,8 +117,22 @@ export const LoginPage = ()=>{
             {
                 openProcessing == true && (
                     <div className="absolute flex flex-col gap-4 border-2 z-10 bg-white p-2 top-36 h-64 w-64 rounded-lg justify-center">
-                    <div className="self-center basis-1/2 h-[7.3rem] w-[7.3rem] animate-loading rounded-full border-[20px] "></div>
-                        <p className="self-center text-lg text-green-600">procesando</p>
+                   {
+                     status === 'authenticated' 
+                     ? (
+                     <>
+                     <CheckBadgeIcon className="text-green-600"/>
+                     <p className="self-center text-xl text-green-600 font-bold">Bienvenido</p>
+                     </>
+                     ) 
+                     : (
+                        <>
+                        <div className="self-center basis-1/2 h-[7.3rem] w-[7.3rem] animate-loading rounded-full border-[20px] "></div>
+                        <p className="self-center text-lg text-green-600 font-bold">procesando</p>
+                        </>
+                        )
+                   }
+                        
                     </div>
                 )
             }

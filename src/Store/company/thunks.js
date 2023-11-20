@@ -40,7 +40,7 @@ export function updateCompanyInformation ( token, data ) {
             body: JSON.stringify(data)
         })
         const res = await req.json()
-        console.log('d',res)
+        
         if( res.error !== null) {
             dispatch( updateCompany( {
                 error: res.error,

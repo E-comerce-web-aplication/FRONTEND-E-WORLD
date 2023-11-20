@@ -49,11 +49,12 @@ export const CompanyForm = ()=>{
     const [categories,setCategories] = useState([])
 
     useEffect(()=>{
-        return async ()=>{
+        const getCategories = async ()=>{
             const res = await fetch("http://localhost:3000/api/v1/organization/categories")
             const data = await res.json()
             setCategories(data)
         }
+        getCategories()
     }, [])
 
     const dispatch = useDispatch()

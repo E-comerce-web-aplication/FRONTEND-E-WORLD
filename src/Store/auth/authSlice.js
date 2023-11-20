@@ -99,6 +99,9 @@ export const authSlice = createSlice({
       },
       storeOrCompanyRegister: ( state, { payload } )=>{
         state.organization = payload.organization
+      },
+      signOut: ( state, { payload } )=>{
+        state.status = payload.status
       }
     },
 })
@@ -111,6 +114,7 @@ export const {
     finishedStoreForm, 
     register,
     login,
+    signOut,
     storeOrCompanyRegister
 } = authSlice.actions
 

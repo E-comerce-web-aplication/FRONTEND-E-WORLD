@@ -1,9 +1,17 @@
 import { NavLink } from "react-router-dom"
-import { ShoppingBagIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-
+import { ArrowLeftOnRectangleIcon, ShoppingBagIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { useDispatch } from "react-redux"
+import { signOut } from "../../Store/auth/authSlice"
 
 
 export const AuthenticatedProfile = ({ status })=>{
+    const dispatch =useDispatch()
+
+    const onSigOut = ()=>{
+        dispatch( signOut({ 
+            status: 'no-authenticated'
+        }) )
+    }
 
     return (
         <>
@@ -12,11 +20,15 @@ export const AuthenticatedProfile = ({ status })=>{
         status === 'authenticated' ? 
         (
             <>
-                <NavLink className="self-center basis-[22%] bg-white border-2 border-black/30 rounded-2xl hover:scale-[1.02]"
+                
+                <NavLink className=" self-center flex flex-col basis-[22%] bg-white border-2 border-black/30 rounded-2xl hover:scale-[1.02]"
                 to="/users/profile"
                 >
-                    <UserCircleIcon className="h-[2.2rem] text-theme pl-7"/>
+                    <UserCircleIcon className="h-[2.2rem] text-theme pl-7 self-end"/>
                 </NavLink>
+                <ArrowLeftOnRectangleIcon 
+                onClick={onSigOut}
+                className="self-center h-11 text-white mr-1 cursor-pointer"/>
             </>
         ) : (
             <li className="flex gap-1 self-center text-white font-bold sm:hidden">

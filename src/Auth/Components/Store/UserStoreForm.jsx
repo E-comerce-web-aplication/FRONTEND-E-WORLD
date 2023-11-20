@@ -23,11 +23,13 @@ export const UserStoreForm = ()=>{
     const [ roles, setRoles ] = useState([])
 
     useEffect(()=>{ 
-        return async ()=>{
+        const getRole = async ()=>{
             const req = await fetch('http://localhost:3000/api/v1/roles/default')
             const res = await req.json()
             setRoles(res)
         }
+
+        getRole()
     },[ ])
 
     const buttonRef = useRef()

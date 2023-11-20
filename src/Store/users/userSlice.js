@@ -6,15 +6,9 @@ export const userSlice = createSlice({
 
    initialState: {
       organizationSession: null, // 'store', 'company' , 'storeOfCompany' 
-      userStore: {
-
-      },
-      userOwner: {
-         
-      },
-      userCompany: {
-         
-      }
+      userStore: {},
+      userOwner: {},
+      userCompany: {}
    },
 
    reducers: {

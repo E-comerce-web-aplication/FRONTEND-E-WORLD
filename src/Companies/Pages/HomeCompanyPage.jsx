@@ -17,16 +17,19 @@ export const HomeCompanyPage = ()=>{
     }, [])
 
     const { companyList } = useSelector( state => state.company )
-  
+
+    console.log(companyList)
     return (
         <CommonLayout>
-            <CompanyList>
-                {
-                    companyList.map((company, index )=>(
-                        <CompanyItem key={company.id} data={ companyList[index] }/>
-                    ))
-                }
-            </CompanyList>
+            <main className="flex flex-col gap-1 h-[80vh] m-1">
+                <CompanyList>
+                    {
+                        companyList.map((company, index )=>(
+                            <CompanyItem key={company.id} data={ companyList[index] }/>
+                        ))
+                    }
+                </CompanyList>
+            </main>
         </CommonLayout>
     )
 }

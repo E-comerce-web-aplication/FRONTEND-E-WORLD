@@ -19,7 +19,36 @@ export const RegisterCompany = ( ownerCompany )=>{
         })
 
         const data = await req.json()
-        console.log(data)
+        dispatch( register({
+            status: 'registered',
+            error: data.error
+        }) )
+
+       } catch (error) {
+        console.log(error)
+        dispatch( register({
+            status: 'no-registered',
+            error: error
+        }) )
+       }
+    }
+}
+
+export const RegisterStore = ( ownerStore )=>{
+
+    return async ( dispatch )=>{
+
+       try {
+        const req = await fetch(`${urlAPI}/register_store`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( ownerStore )
+        })
+
+        const data = await req.json()
+        console.log('la data',data)
         dispatch( register({
             status: 'registered',
             error: data.error
@@ -46,13 +75,22 @@ export const loginRegister = ( data )=>{
                 body: JSON.stringify( data )
             } )
             const dataBack = await res.json()
+            console.log("dara",dataBack)
+
+            if( dataBack.error !== null ){
+                return dispatch( login({
+                    status: 'no-authenticated',
+                    error: dataBack.error
+                }))
+            }
+
             dispatch( login({
                 status: 'authenticated',
                 token: dataBack.token,
                 error: null
             }))
 
-            dispatch( loadSession({
+            return dispatch( loadSession({
                 organizationSession: dataBack.session
              }) )
         } catch (error) {

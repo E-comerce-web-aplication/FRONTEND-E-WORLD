@@ -78,6 +78,7 @@ export const UpdateCompanyForm = ()=>{
             })
         }
     }, [updated])
+    
     return (
         <form className="flex flex-col gap-1 justify-center">
            <section className="flex flex-col gap-1">
