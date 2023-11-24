@@ -6,7 +6,8 @@ import { createValidation } from './helpers/validatorItem'
 export const useForm = (initialForm = {} , validationForm = {} )=>{
 
     const [ formState, setFormState ] = useState(initialForm)
-    const [image, setImage] = useState([])
+    const [ image, setImage ] = useState([])
+    const [ disableImage, setDisableImage ] = useState(false)
     const [ disableButton, setDisableButton ] = useState(false)
 
     useEffect(()=>{
@@ -17,6 +18,11 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
         createValidation(setDisableButton, validationForm, formState)
     }, [ formState ])
 
+    useEffect(()=>{
+        if( image.length === 5){
+            setDisableImage(true)
+        }
+    }, [ image ])
     
 
     const onInputChange = (event)=>{
@@ -34,7 +40,7 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
     
     
     const onChangeImageUrl = (event)=>{
-        if( image.length === 4) event.target.disabled = true;
+        
         const images = {
             id: uuid(),
             imageUrl:window.URL.createObjectURL(event.target.files[0]),
@@ -48,6 +54,9 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
     }
 
     const onDeleteImage = (id)=>{
+        if( image.length < 5 ) {
+            setDisableImage(false)
+        }
         const newImages = image.filter((image)=> image.id !== id );
         setImage(newImages)
     }
@@ -62,6 +71,7 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
         setDisableButton,
         onChangeImageUrl,
         onDeleteImage,
-        image
+        image,
+        disableImage
     }
 }

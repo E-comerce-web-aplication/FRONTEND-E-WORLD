@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 
 import { NextButton } from '../../../Common/Components/NextButton'
 import { useForm } from '../../../Hooks/useForm'
+import { loadImages } from '../../../Store/products/thunks'
+import { useDispatch } from 'react-redux'
 
 const items = {
     image1: '',
@@ -21,23 +23,29 @@ const validationForm = {
 }
 
 export const ImageForm = ()=>{
-
-   const {setDisableButton, disableButton, onDeleteImage, onChangeImageUrl, image} = useForm( items, validationForm)
+    
+   const { setDisableButton, onDeleteImage, onChangeImageUrl, image, disableImage } = useForm( items, validationForm)
 
    useEffect(()=>{
     setDisableButton(false)
     },[])
 
+    const dispatch = useDispatch()
+    
+    const onFinalizatedForm = ()=>{
+        dispatch( loadImages( image ) )
+    }
+
     return (
         <div className="flex flex-col gap-1 mt-1 mb-1">
             <h2 className="self-center font-bold m-1 p-1 border-2 border-dashed border-theme 
             rounded-md text-theme">Agrega imagenes de tu producto</h2>
-            <form className='self-center flex flex-col justify-center'>
-                <figure className="flex h-[60vh] pl-1 flex-row flex-wrap gap-2 overflow-y-auto">
+            <form className='self-center flex flex-col'>
+                <figure className="flex justify-center flex-wrap h-[60vh] pl-1 gap-2 overflow-y-auto">
                     {
                         image.map((image)=>{
                             return (
-                            <div key={image.id}>
+                            <div className='' key={image.id}>
                                 <XMarkIcon
                                 onClick={()=>onDeleteImage(image.id)}
                                 className="h-5 text-white bg-black/30 cursor-pointer relative top-6 z-20 hover:text-red-700"/> 
@@ -53,10 +61,12 @@ export const ImageForm = ()=>{
                         </label>
                         <input 
                         onChange={onChangeImageUrl}
+                        disabled={disableImage}
                         id="imageProduct" className="hidden" type="file" multiple/>
                     </div>
                 </figure>
             </form>
+            <NextButton onFinalizatedForm={onFinalizatedForm} disableButton={disableImage} next={2} />
         </div>
     )
 }

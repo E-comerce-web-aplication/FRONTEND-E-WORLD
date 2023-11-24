@@ -3,6 +3,7 @@ import { ProductInformation } from "./ProductInformation"
 import { ImageForm } from "./ImageForms"
 import { ProductContext }  from "../../Context/ProductContext"
 import { FormLayout } from "../../../Layout/FormLayout"
+import { EndForm } from "./EndForm"
 
 export const IndexForm = ()=>{
     const { nextForm } = useContext(ProductContext)
@@ -19,6 +20,13 @@ export const IndexForm = ()=>{
             return (
                 <FormLayout step={3}>
                   <ImageForm/>
+                </FormLayout>
+            )
+        }
+        if( step === 2 ){
+            return (
+                <FormLayout step={3}>
+                  <EndForm/>
                 </FormLayout>
             )
         }

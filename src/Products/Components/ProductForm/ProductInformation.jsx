@@ -2,75 +2,88 @@
 import { useRef } from 'react'
 import { useForm } from '../../../Hooks/useForm'
 import { NextButton } from '../../../Common/Components/NextButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadInformation } from '../../../Store/products/thunks'
 
 
 const items = {
     name:'',
     description:'',
-    stock:0,
-    price:'',
+    sendConditions: '',
+    price: 0,
 }
 
 const validationForm = {
     name:[(value)=>value?.trim().length > 0 ],
     description:[(value)=> value?.trim().length > 0],
-    stock: [(value)=> value?.length > 0],
-    price: [(value)=> value?.trim().length > 0]
+    sendConditions: [(value)=> value?.length > 0],
+    price: [(value)=> value > 0]
 }
 
 export const ProductInformation = ()=>{
 
     const nameRef = useRef()
     const descriptionRef = useRef()
-    const stockRef = useRef()
+    const conditionsRef = useRef()
     const priceRef = useRef()
     const nextRef = useRef() 
 
 
     
-    const { name, description, stock, price, onNextInput, disableButton, onInputChange} = useForm(items, validationForm)
+    const { name, description, sendConditions, price, onNextInput, disableButton, onInputChange} = useForm(items, validationForm)
     
+    const dispatch = useDispatch()
+
+    const onFinalizatedForm = ()=>{
+        dispatch( loadInformation({
+            productName: name,
+            description: description,
+            sendConditions: sendConditions,
+            price: price
+        }) )
+    }
+
     return (
         <div className='flex flex-col gap-1'>
             <form className='flex flex-col'>
-                <div className='flex flex-col self-center w-64'>
+                <div className='flex flex-col self-center w-80'>
                     <label htmlFor='name' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10'>Nombre del producto</label>
                     <input 
                     id='name'
                     ref={nameRef}
                     name='name'
                     value={name}
-                    onKeyDown={(e)=>onNextInput( e, stockRef )}
+                    onKeyDown={(e)=>onNextInput( e, priceRef )}
                     type="text"
                     onChange={onInputChange} 
                     placeholder='sombria ejemplo'
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
                 </div>
-                <div className='flex flex-col self-center w-64'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-12 z-10'>Stock</label>
-                    <input
-                    ref={stockRef}
-                    name='stock'
-                    onChange={onInputChange}
-                    value={stock}
-                    onKeyDown={(e)=>onNextInput(e,priceRef )}
-                    type="number" 
-                    placeholder='23'
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
-                </div>
-                <div className='flex flex-col self-center w-64'>
+                <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-14 z-10'>Precio</label>
                     <input
                     ref={priceRef}
                     name='price'
                     onChange={onInputChange}
                     value={price}
-                    onKeyDown={(e)=>onNextInput(e,descriptionRef )}
-                    type="text"
+                    onKeyDown={(e)=>onNextInput(e, conditionsRef )}
+                    type="number"
+                    min={0}
                     placeholder='23.45' 
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
                 </div>
-                <div className='flex flex-col self-center w-64'>
+                <div className='flex flex-col self-center w-80'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10'>Condiciones de envio</label>
+                    <textarea
+                    ref={conditionsRef}
+                    name='sendConditions'
+                    onChange={onInputChange}
+                    value={sendConditions}
+                    onKeyDown={(e)=>onNextInput(e,descriptionRef)}
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50'>
+                    </textarea>
+                </div>
+                <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-24 z-10'>Descripcion</label>
                     <textarea
                     ref={descriptionRef}
@@ -82,6 +95,7 @@ export const ProductInformation = ()=>{
                     </textarea>
                 </div>
             </form>
+            <NextButton onFinalizatedForm={onFinalizatedForm} disableButton={disableButton} next={1} nextRef={nextRef}/>
         </div>
     )
 }
