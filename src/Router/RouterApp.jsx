@@ -16,10 +16,9 @@ export const RouterApp = ()=>{
             <Route path="/auth/*" element={<AuthRouter/>}/>
 
             <Route path="/products/*" element={
-                // <PrivateRouter>
-                //     <ProductRouter/>
-                // </PrivateRouter>
-                <ProductRouter/>
+                <PrivateRouter>
+                    <ProductRouter/>
+                </PrivateRouter>
             }/>
             <Route path="/users/*" element={
                 <PrivateRouter>

@@ -1,17 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
-export const ImageProduct = ()=>{
+export const ImageProduct = ({ images })=>{
 
-    const [ url, setUrl ] = useState("/public/assets/mi hoddie.jpg")
+    const [ url, setUrl ] = useState("")
 
     const changeImage = (url)=>{
         setUrl(url)
     }
-    
-    const images = ["mi hoddie.jpg", "camisa_2.jpg", "mi hoddie.jpg", "sueter_2.1.jpg"]
-    
+
+    useEffect(()=>{
+      images.images !== null && setUrl(images?.images[0]) 
+    }, [ images.images ])
+   
     return (
         <div className="flex flex-col gap-3">
             <figure className="border-2 rounded-lg m-1">
@@ -19,8 +21,8 @@ export const ImageProduct = ()=>{
             </figure>
             <figure className="flex flex-row gap-2 self-center">
                 {
-                    images.map((image,i)=>{
-                        const img = `/public/assets/${image}`
+                    images?.images.map((image,i)=>{
+                        const img = image
                         return (
                             <img 
                             onMouseMove={()=>changeImage(img)}

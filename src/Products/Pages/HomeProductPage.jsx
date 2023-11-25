@@ -1,11 +1,21 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { CommonLayout } from '../../Layout'
 import { ItemProduct, ProductList } from '../Components'
 import { CreateProductButton } from '../Components/Buttons/CreateProductButton'
 import { NextProducts } from '../Components/Home/NextProducts'
+import { useEffect } from 'react'
+import { getAllProducts } from '../../Store/products/thunks'
 
 
 export const HomeProductPage = ()=>{
-    const products = [1,2,3,4,5,6,7]
+
+    const dispatch = useDispatch()
+   
+    useEffect(()=>{
+        dispatch( getAllProducts() )
+    }, [])
+    const { productList } = useSelector( state => state.product)
+
     return (
         <CommonLayout>
             <main className='flex flex-col gap-1  pl-1'>
@@ -15,7 +25,11 @@ export const HomeProductPage = ()=>{
                 <section className='flex-col basis-1/2'>
                     <ProductList>
                         {
-                            products.map((i)=>(<ItemProduct key={i}/>))
+                            productList.map(
+                            (product)=>
+                                (
+                                <ItemProduct data={product}  key={product.id}/>
+                                ))
                         }
                     </ProductList>
                 </section>

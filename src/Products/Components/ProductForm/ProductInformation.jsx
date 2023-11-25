@@ -8,21 +8,24 @@ import { loadInformation } from '../../../Store/products/thunks'
 
 const items = {
     name:'',
+    title: '',
     description:'',
     sendConditions: '',
     price: 0,
 }
 
 const validationForm = {
-    name:[(value)=>value?.trim().length > 0 ],
-    description:[(value)=> value?.trim().length > 0],
-    sendConditions: [(value)=> value?.length > 0],
+    name:[(value)=>value?.trim().length > 5 ],
+    title: [(value)=> value?.trim().length > 50 ],
+    description:[(value)=> value?.trim().length > 80],
+    sendConditions: [(value)=> value?.length > 80],
     price: [(value)=> value > 0]
 }
 
 export const ProductInformation = ()=>{
-
+    const { userOwner } = useSelector( state => state.company )
     const nameRef = useRef()
+    const titleRef = useRef()
     const descriptionRef = useRef()
     const conditionsRef = useRef()
     const priceRef = useRef()
@@ -30,16 +33,18 @@ export const ProductInformation = ()=>{
 
 
     
-    const { name, description, sendConditions, price, onNextInput, disableButton, onInputChange} = useForm(items, validationForm)
+    const { name, description, sendConditions, price, title, onNextInput, disableButton, onInputChange} = useForm(items, validationForm)
     
     const dispatch = useDispatch()
 
     const onFinalizatedForm = ()=>{
         dispatch( loadInformation({
             productName: name,
+            title: title,
             description: description,
             sendConditions: sendConditions,
-            price: price
+            price: price,
+            companyId: userOwner?.companyOwner?.id
         }) )
     }
 
@@ -53,6 +58,19 @@ export const ProductInformation = ()=>{
                     ref={nameRef}
                     name='name'
                     value={name}
+                    onKeyDown={(e)=>onNextInput( e, titleRef )}
+                    type="text"
+                    onChange={onInputChange} 
+                    placeholder='sombria ejemplo'
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                </div>
+                <div className='flex flex-col self-center w-80'>
+                    <label htmlFor='title' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-40 z-10'>Titulo del producto</label>
+                    <input 
+                    id='title'
+                    ref={titleRef}
+                    name='title'
+                    value={title}
                     onKeyDown={(e)=>onNextInput( e, priceRef )}
                     type="text"
                     onChange={onInputChange} 
