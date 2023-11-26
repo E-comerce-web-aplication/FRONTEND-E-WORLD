@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
-import { createNewProduct } from "../../../Store/products/thunks"
+import { useDispatch } from "react-redux"
 import { useEffect } from "react"
+import { CheckBadgeIcon } from "@heroicons/react/24/outline"
+import { createNewProduct } from "../../../Store/products/thunks"
 
 
 export const EndForm = ()=>{
@@ -12,8 +13,9 @@ export const EndForm = ()=>{
     }, [])
     
     return (
-        <>
-            felicidades terminaste
-        </>
+        <div className="flex flex-col h-[70vh]">
+            <h2 className="text-2xl text-center text-green-600 font-bold">Producto Creado con exito</h2>
+            <CheckBadgeIcon className="text-green-600"/>
+        </div>
     )
 }

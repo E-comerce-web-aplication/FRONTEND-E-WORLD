@@ -8,14 +8,15 @@ import { getAllProducts } from '../../Store/products/thunks'
 
 
 export const HomeProductPage = ()=>{
-
+    const { userOwner } = useSelector( state => state.user )
     const dispatch = useDispatch()
    
     useEffect(()=>{
-        dispatch( getAllProducts() )
+        dispatch( getAllProducts( userOwner?.companyOwner?.id) )
     }, [])
     const { productList } = useSelector( state => state.product)
 
+  
     return (
         <CommonLayout>
             <main className='flex flex-col gap-1  pl-1'>

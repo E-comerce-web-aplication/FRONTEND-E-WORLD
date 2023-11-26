@@ -23,7 +23,7 @@ const validationForm = {
 }
 
 export const ProductInformation = ()=>{
-    const { userOwner } = useSelector( state => state.company )
+    const { userOwner } = useSelector( state => state.user )
     const nameRef = useRef()
     const titleRef = useRef()
     const descriptionRef = useRef()

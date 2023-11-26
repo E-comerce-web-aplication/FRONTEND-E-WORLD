@@ -12,8 +12,7 @@ export const ItemProduct = ({ data })=>{
             pathname: `/products/${id}`
         })
     }
-    console.log(data)
-
+    
     return (
         <section 
         onClick={()=>onChangeDetailProduct(data.id)}
@@ -22,16 +21,16 @@ export const ItemProduct = ({ data })=>{
                 <img className='h-48 w-full' src={data.images[0]}/>
             </figure>
             <div className="flex flex-col gap-1 ">
-            <h2 className="border-2 border-theme rounded-lg text-center font-bold text-theme text-lg">Sombrila negra</h2>
+            <h2 className="border-2 border-theme rounded-lg text-center font-bold text-theme text-lg">{ data?.title }</h2>
                 <section className="flex flex-row gap-1 pl-2">
                 <div className='flex flex-col gap-1 basis-[75%]'>
                     <p className='flex gap-1 bg-theme w-24 text-white font-bold text-sm p-1 rounded-lg text-center'>
                         <span>en stock</span>
-                        <span>10</span>
+                        <span>{ data?.stock }</span>
                     </p>
                     <p className=" font-bold flex gap-1">
                         <span className="text-sm text-black/70">price:</span>
-                        <span className="text-base text-black/70">100.00 $</span>
+                        <span className="text-base text-black/70">{ data?.price } $</span>
                     </p>
                 </div>
                 <ShoppingCartIcon className='self-center text-theme h-8 hover:scale-[1.02]'/>

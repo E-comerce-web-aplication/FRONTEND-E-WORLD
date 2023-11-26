@@ -54,7 +54,6 @@ export const createNewProduct = ()=>{
             images.push(url) 
         }
         const res = await createdProduct( state , images )
-        console.log(res)
         dispatch( createProduct( {
             created: true,
             error: res.error
@@ -63,11 +62,12 @@ export const createNewProduct = ()=>{
 }
 
 
-export const getAllProducts = ()=>{
+export const getAllProducts = ( companydId )=>{
     return async ( dispatch )=>{
 
-        const req = await fetch(API_URL)
+        const req = await fetch(`${API_URL}?companyId=${companydId}`)
         const res = await req.json()
+        console.log(res)
         
         dispatch( loadProducts({
             products: res

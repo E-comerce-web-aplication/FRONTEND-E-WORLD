@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 
 
-export const ImageProduct = ({ images })=>{
+export const ImageProduct = ({ data })=>{
 
     const [ url, setUrl ] = useState("")
 
@@ -10,10 +10,12 @@ export const ImageProduct = ({ images })=>{
         setUrl(url)
     }
 
-    useEffect(()=>{
-      images.images !== null && setUrl(images?.images[0]) 
-    }, [ images.images ])
-   
+    useEffect(() => {
+        if (data && data.images && data.images.length > 0) {
+            setUrl(data.images[0]);
+        }
+    }, [data]);
+    
     return (
         <div className="flex flex-col gap-3">
             <figure className="border-2 rounded-lg m-1">
@@ -21,12 +23,11 @@ export const ImageProduct = ({ images })=>{
             </figure>
             <figure className="flex flex-row gap-2 self-center">
                 {
-                    images?.images.map((image,i)=>{
-                        const img = image
+                    data?.images?.map((image,i)=>{
                         return (
                             <img 
-                            onMouseMove={()=>changeImage(img)}
-                            className="h-11 w-14 border-[1px] rounded-md cursor-pointer border-black/80 hover:scale-[1.02]" src={img} key={i}/>
+                            onMouseMove={()=>changeImage(image)}
+                            className="h-11 w-14 border-[1px] rounded-md cursor-pointer border-black/80 hover:scale-[1.02]" src={image} key={i}/>
                         )
                     })
                 }

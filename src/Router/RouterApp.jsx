@@ -8,12 +8,14 @@ import { InventoryRouter } from "../Inventory"
 import { RegisterRouter } from "../Registers/Router/RegisterRouter"
 import { PrivateRouter } from "./PrivateRouter"
 import { CompanyRouter } from "../Companies"
+import { PurcharseRouter } from "../Purcharse"
 
 export const RouterApp = ()=>{
     return (
         <Routes>
             <Route path="/" element={<CommonRouter/>}/>
             <Route path="/auth/*" element={<AuthRouter/>}/>
+            <Route path="/purcharse/*" element={<PurcharseRouter/>}/>
 
             <Route path="/products/*" element={
                 <PrivateRouter>
