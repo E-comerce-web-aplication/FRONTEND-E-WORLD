@@ -15,7 +15,11 @@ export const RouterApp = ()=>{
         <Routes>
             <Route path="/" element={<CommonRouter/>}/>
             <Route path="/auth/*" element={<AuthRouter/>}/>
-            <Route path="/purcharse/*" element={<PurcharseRouter/>}/>
+            <Route path="/purcharse/*" element={
+                <PrivateRouter>
+                    <PurcharseRouter/>
+                </PrivateRouter>
+            }/>
 
             <Route path="/products/*" element={
                 <PrivateRouter>
@@ -33,13 +37,16 @@ export const RouterApp = ()=>{
                 </PrivateRouter>
             }/>
             <Route path="/registers/*" element={<RegisterRouter/>}/>
-            <Route path="/inventory/*" element={<InventoryRouter/>}/>
+            <Route path="/inventory/*" element={
+                <PrivateRouter>
+                    <InventoryRouter/>
+                </PrivateRouter>
+            }/>
 
             <Route path="/company/*" element={
-                // <PrivateRouter>
-                //     <CompanyRouter/>
-                // </PrivateRouter>
-                <CompanyRouter/>
+                <PrivateRouter>
+                    <CompanyRouter/>
+                </PrivateRouter>
             }/>
         </Routes>
     )

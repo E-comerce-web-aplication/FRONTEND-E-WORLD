@@ -1,0 +1,31 @@
+import { useNavigate } from "react-router-dom"
+
+
+
+export const PurcharseButtons = ({ onLoadProducts, products })=>{
+
+    const navigate = useNavigate()
+
+    const onChangeConfirmationPage = ()=>{
+        navigate({
+            pathname:"/purcharse/create/confirmation"
+        })
+    }
+
+    return (
+        <secion className="flex gap-1 m-1 justify-center">
+            <button 
+            onClick={()=>{
+                onLoadProducts(products)
+                onChangeConfirmationPage()
+            }}
+            className="hover:scale-[1.02] hover:opacity-80 flex border-2 text-lg font-bold p-1 rounded-lg border-green-600 bg-green-600 text-white"
+            type="button"
+            >Hacer la compra</button>
+            <button 
+            className="hover:scale-[1.02] hover:opacity-80 flex border-2 text-lg font-bold p-1 rounded-lg border-red-600 bg-red-600 text-white"
+            type="button"
+            >Cancelar la compra</button>
+        </secion>
+    )
+}

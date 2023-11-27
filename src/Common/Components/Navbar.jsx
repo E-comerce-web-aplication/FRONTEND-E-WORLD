@@ -79,6 +79,11 @@ export const Navbar = ()=>{
                             Compras
                         </NavLink>
                     </li>
+                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
+                        <NavLink to="/company">
+                            Compañias
+                        </NavLink>
+                    </li>
                     {
                         organizationSession === "store" && (
                             <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">

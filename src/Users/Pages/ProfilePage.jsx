@@ -7,7 +7,7 @@ import { UserInformation } from '../Components/UserInformation'
 
 export const ProfilePage = ()=>{
     const user = useSelector( state => state.user )
-    console.log(user)
+    
     return (
         <CommonLayout>
             <main className='flex flex-col gap-1 m-1'>

@@ -3,6 +3,8 @@ import { authSlice } from "./auth/authSlice";
 import { userSlice } from "./users/userSlice"
 import { companySlice } from "./company/companySlice";
 import { productSlice } from "./products/productSlice"
+import { purcharseSlice } from "./purcharse/purcharseSlice";
+import { inventorySlice } from "./inventory/inventorySlice";
 
 
 export const store = configureStore({
@@ -10,6 +12,8 @@ export const store = configureStore({
         auth: authSlice.reducer,
         user: userSlice.reducer,
         company: companySlice.reducer,
-        product: productSlice.reducer
+        product: productSlice.reducer,
+        purchase: purcharseSlice.reducer,
+        inventory: inventorySlice.reducer
     }
 })

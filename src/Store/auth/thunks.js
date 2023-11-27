@@ -48,7 +48,7 @@ export const RegisterStore = ( ownerStore )=>{
         })
 
         const data = await req.json()
-        console.log('la data',data)
+      
         dispatch( register({
             status: 'registered',
             error: data.error
@@ -75,8 +75,7 @@ export const loginRegister = ( data )=>{
                 body: JSON.stringify( data )
             } )
             const dataBack = await res.json()
-            console.log("dara",dataBack)
-
+          
             if( dataBack.error !== null ){
                 return dispatch( login({
                     status: 'no-authenticated',

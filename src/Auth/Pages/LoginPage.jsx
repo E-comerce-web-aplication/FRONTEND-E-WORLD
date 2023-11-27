@@ -45,15 +45,15 @@ export const LoginPage = ()=>{
             setTimeout(()=>{
                 setOpenProcessing(false)
                 navigate({
-                    pathname: '/'
+                    pathname: '/users/profile'
                 })
-            },1000)
+            },300)
         }
         if( status === 'no-authenticated'){
             setTimeout(()=>{
                 setOpenProcessing(false)
                 setOpenMessageError(true)
-            },500)
+            },300)
         }
     }, [ error ])
 

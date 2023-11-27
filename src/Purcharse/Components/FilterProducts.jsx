@@ -1,11 +1,17 @@
 import {} from "@heroicons/react/24/outline"
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddPurcharseItem } from "./AddPurcharseItem"
+import { PurcharseButtons } from "./PurcharseButtons"
+import { loadProducts } from "../../Store/purcharse/thunks"
 
 
 export const FilterProducts = ()=>{
+
+    
+    const dispatch = useDispatch()
+
     const [ product, setProduct ] = useState([])
     const [ purcharseProduct, setPurcharseProduct ] = useState([])
     const { productList } = useSelector( state => state.product )
@@ -24,8 +30,25 @@ export const FilterProducts = ()=>{
             ...purcharseProduct,
             product
         ])
-       }
+       
     }
+}
+
+    const deletePurcharseProduct =( product = {} )=>{
+        if( Object.keys(product).length > 0 ){
+            const newProducts = []
+            const existsProduct = purcharseProduct.filter( purcharse => purcharse.id  !== product.id )
+            if( existsProduct.length > 0 ){
+                existsProduct.map((product)=>{
+                    newProducts.push(product)
+                })
+                setPurcharseProduct(newProducts)     
+            }else {
+                setPurcharseProduct([ ]) 
+            }
+           
+        }  
+    } 
 
     const onFindProductByName =({ target })=>{
         const products = product.filter(( product )=>{
@@ -38,7 +61,30 @@ export const FilterProducts = ()=>{
         if( target?.value?.length === 0 ) setProduct(productList)
     }
 
-    
+    const onChangeQuantity = ( value, productId )=>{
+        const updatedProduct = []
+        const updateProduct = purcharseProduct.filter( purcharse => purcharse.id  === productId )
+        const products = purcharseProduct.filter( purcharse => purcharse.id  !== productId )
+        
+        if( updateProduct.length > 0 ){
+            updateProduct.map((product)=>{
+                updatedProduct.push({
+                    ...product,
+                    quantity: parseInt(value)
+                })
+            })
+            setPurcharseProduct([
+                ...products,
+                ...updatedProduct
+            ])
+        }else {
+            setPurcharseProduct([ ]) 
+        }
+    }
+
+    const onLoadProducts = (products)=>{
+        dispatch( loadProducts(products) )
+    }
     return (
         <section className="flex flex-col gap-1">
           <div className="flex gap-1 m-1 pl-10 self-center">
@@ -53,7 +99,7 @@ export const FilterProducts = ()=>{
           <section className="self-center flex flex-col gap-1 h-[32vh] overflow-y-auto">
             {
                 product.map((product)=>(
-                    <AddPurcharseItem 
+                    <AddPurcharseItem
                     addPurcharseList={AddPurcharseProduct}
                     isPurcharseList={false} data={product} key={product.id}/>
                 ))
@@ -66,12 +112,14 @@ export const FilterProducts = ()=>{
                 {
                     purcharseProduct.map((product)=>(
                         <AddPurcharseItem 
-                        addPurcharseList={()=>{}}
-                        isPurcharseList={true} data={product} key={product.id}/>
+                        onChangeQuantity={onChangeQuantity}
+                        deletePurcharseList={deletePurcharseProduct}
+                        isPurcharseList={true} data={product} key={product?.id}/>
                     ))
                 }
             </section>
           </section>
+          <PurcharseButtons onLoadProducts={onLoadProducts} products={purcharseProduct}/>
         </section>
     )
 }
