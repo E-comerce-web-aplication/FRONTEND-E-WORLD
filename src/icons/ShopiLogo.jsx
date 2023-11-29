@@ -6,7 +6,7 @@ export const ShopiLogo = ({ color, whereIcon })=>{
     const whereIconPage = (where)=>{
         if( where == 'menu'){
             return (
-                <ShopLogo className="h-16 w-28" fill={color}/>
+                <ShopLogo className="h-16 w-28 md:h-32" fill={color}/>
             )
         }
         if(where == 'auth'){

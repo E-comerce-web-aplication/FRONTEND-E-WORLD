@@ -5,10 +5,12 @@ import { ShopiLogo } from "../../icons/ShopiLogo"
 import { useState } from "react"
 import { Modal } from "./Modal"
 import { OrderModal } from "./OrderModal"
-import { useSelector } from "react-redux"
+import {  useSelector } from "react-redux"
 import { AuthenticatedProfile } from "./AuthenticatedComponents"
 
 export const Navbar = ()=>{
+
+    
 
     const { status } = useSelector( state => state.auth )
     const { organizationSession } = useSelector( state => state.user )
@@ -23,9 +25,11 @@ export const Navbar = ()=>{
     const onCloseMenu = ()=>{
         setOpenMenu(false)
     }
+    
 
     return (
         <ul className="flex flex-col bg-theme">
+            
             <div className="flex gap-3 border-b-2 border-white"> 
                 <Bars3Icon onClick={onOpenMenu} className="sm:hidden self-center text-white cursor-pointer h-10"/>    
                 <NavLink className="ml-5 cursor-pointer basis-[48%]" to="/">
@@ -42,7 +46,7 @@ export const Navbar = ()=>{
                 }
             </div>
 
-            <div className={`${openMenu === true ? "absolute z-20 flex flex-col bg-theme w-full top-[4.1rem]" : "hidden sm:block"} pt-2`}>
+            <div className={`${openMenu === true ? "absolute z-20 flex flex-col bg-theme w-full top-[4.1rem]" : "hidden sm:block w-56"} pt-2`}>
                <div className="flex flex-col gap-2 font-bold text-lg ">
                     <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
                         <NavLink to="/Products">

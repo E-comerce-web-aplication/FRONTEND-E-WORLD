@@ -19,11 +19,11 @@ export const HomeProductPage = ()=>{
   
     return (
         <CommonLayout>
-            <main className='flex flex-col gap-1  pl-1'>
-            <h2 className='border-2 p-1 m-1 rounded-lg border-theme text-theme 
+            <main className='flex flex-col gap-1  pl-1 '>
+            <h2 className='self-center md:w-96 border-2 p-1 m-1 rounded-lg border-theme text-theme 
                     text-center font-bold text-xl'>Mis productos</h2>
             <NextProducts/>
-                <section className='flex-col basis-1/2'>
+                <section className='self-center flex-col basis-1/2 justify-center'>
                     <ProductList>
                         {
                             productList.map(

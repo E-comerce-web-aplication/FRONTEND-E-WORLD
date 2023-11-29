@@ -18,7 +18,7 @@ export const ItemProduct = ({ data })=>{
         onClick={()=>onChangeDetailProduct(data.id)}
         className="flex flex-col gap-1 basis-1/2 border-2 p-1 rounded-lg cursor-pointer hover:scale-[1.02]">
             <figure className="rounded-l-lg bg-theme">
-                <img className='h-48 w-full' src={data.images[0]}/>
+                <img className='h-48 md:h-72 w-full' src={data.images[0]}/>
             </figure>
             <div className="flex flex-col gap-1 ">
             <h2 className="border-2 border-theme rounded-lg text-center font-bold text-theme text-lg">{ data?.title }</h2>
