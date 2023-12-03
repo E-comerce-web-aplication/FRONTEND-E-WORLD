@@ -36,18 +36,17 @@ export const UserInformation = ()=>{
     }, [ userOwner ])
 
     useEffect(()=>{
-
-        if( userStore != null ){
+        if( userStore !== null ){
+            console.log('i',)
             setOrganization({
-                name: userStore?.belongingStore?.storeName,
-                displayName: userStore?.informationUserStore?.displayName,
-                email: userStore.informationUserStore?.email,
-                dateOfBirth: userStore.informationUserStore?.dateOfBirth
+                name: userStore?.belongingCompanyStore?.storeName,
+                displayName: userStore?.informationUserCompanyStore?.displayName,
+                email: userStore.informationUserCompanyStore?.email,
+                dateOfBirth: userStore.informationUserCompanyStore?.dateOfBirth
             })
         }
 
      }, [ userStore ])
-
     return (
         <section className="self-center flex flex-col">
             <h2 className="border-b-2 font-bold p-1 m-1 text-xl border-blue-950 text-blue-950">{
@@ -61,7 +60,7 @@ export const UserInformation = ()=>{
             {
                 organizationSession === "store" && (
                     <p className="p-1 border-2 rounded-lg m-2 font-semibold text-center border-blue-500
-                    text-blue-500 hover:scale-[1.02]"> Owner by { organization?.name} </p>
+                    text-blue-500 hover:scale-[1.02]"> User by { organization?.name} </p>
                 )
             }
             <section className="flex flex-col gap-1">

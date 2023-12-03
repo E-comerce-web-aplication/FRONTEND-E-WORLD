@@ -11,15 +11,15 @@ export const OptionButtons = ()=>{
                 <Link to="/company/information" className="border-2 rounded-md p-1 font-semibold text-center ">
                    Compañia
                 </Link>
-                <button className="border-2 rounded-md p-1 font-semibold">
-                    Tiendas
-                </button>
-                <button className="border-2 rounded-md p-1 font-semibold">
-                    Clientes
-                </button>
-                <button className="border-2 rounded-md p-1 font-semibold">
+                <Link to="/users/" className="border-2 rounded-md p-1 font-semibold text-center ">
                     Usuarios
-                </button>
+                </Link>
+                <Link to="/stores/" className="border-2 rounded-md p-1 font-semibold text-center ">
+                    Tiendas
+                </Link>
+                <Link to="/roles/" className="border-2 rounded-md p-1 font-semibold text-center ">
+                    Roles
+                </Link>
             </section>
         </section>
     )

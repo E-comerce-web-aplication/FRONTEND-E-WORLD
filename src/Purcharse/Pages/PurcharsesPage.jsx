@@ -26,7 +26,7 @@ export const PurcharsePage = ()=> {
     return (
         <CommonLayout>
             <main className="flex flex-col gap-1 h-[80vh]">
-                <section className="flex flex-col gap-1 h-[70vh]">
+                <section className="flex flex-col gap-1 h-[70vh] overflow-y-auto">
                     {
                         Purcharses?.map((purchase)=>(
                             <PurcharseItem data={purchase} key={purchase.id}/>

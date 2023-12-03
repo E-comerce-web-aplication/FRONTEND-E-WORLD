@@ -10,7 +10,6 @@ export function getAllCompanies ( token ) {
             }
         })
         const res = await req.json()
-        console.log(res)
 
         dispatch( loadCompanies({ companyList: res }) )
     }

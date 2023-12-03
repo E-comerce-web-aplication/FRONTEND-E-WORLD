@@ -75,7 +75,7 @@ export const loginRegister = ( data )=>{
                 body: JSON.stringify( data )
             } )
             const dataBack = await res.json()
-          
+
             if( dataBack.error !== null ){
                 return dispatch( login({
                     status: 'no-authenticated',

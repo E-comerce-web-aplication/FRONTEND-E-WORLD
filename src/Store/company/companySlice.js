@@ -15,7 +15,8 @@ export const companySlice = createSlice({
     postalCode: null,
     city: null,
     updated: null,
-    error: null
+    error: null,
+    stores: []
    },
 
    reducers: {
@@ -43,9 +44,12 @@ export const companySlice = createSlice({
     updateCompany: ( state, { payload } )=>{
         state.updated = payload.updated
         state.error = payload.error
+    },
+    loadStores: ( state, { payload } )=>{
+        state.stores = payload.stores
     }
 },
 })
 
 
-export const { loadCompanies, preloadOneCompany, loadOneCompany, updateCompany  } = companySlice.actions
+export const { loadCompanies, preloadOneCompany, loadOneCompany, updateCompany, loadStores  } = companySlice.actions

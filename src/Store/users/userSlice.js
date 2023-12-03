@@ -8,7 +8,10 @@ export const userSlice = createSlice({
       organizationSession: null, // 'store', 'company' , 'storeOfCompany' 
       userStore: {},
       userOwner: {},
-      userCompany: {}
+      userCompany: {},
+      users: [],
+      created: false,
+      error: null
    },
 
    reducers: {
@@ -20,9 +23,16 @@ export const userSlice = createSlice({
       },
       loadProfileUserStore: ( state, { payload } )=>{
          state.userStore = payload.userStore
+      },
+      loadUsers: ( state, { payload } )=>{
+         state.users = payload.users
+      },
+      createNewUser:( state, { payload } )=>{
+         state.created = payload.created
+         state.error = payload.error
       }
 },
 })
 
 
-export const { loadProfileOwner, loadProfileUserStore, loadSession } = userSlice.actions
+export const { loadProfileOwner, loadProfileUserStore, loadSession,loadUsers, createNewUser } = userSlice.actions

@@ -33,12 +33,12 @@ export const OrganizationInfo = ()=>{
 
         if( userStore !== null ){
             return setOrganization({
-                name: userStore?.belongingStore?.storeName,
-                region:userStore?.belongingStore?.region,
-                city: userStore?.belongingStore?.city,
-                postalCode: userStore?.belongingStore?.postalCode,
-                address: userStore?.belongingStore?.address,
-                review: userStore?.belongingStore?.review
+                name: userStore?.belongingCompanyStore?.storeName,
+                region:userStore?.belongingCompanyStore?.region,
+                city: userStore?.belongingCompanyStore?.city,
+                postalCode: userStore?.belongingCompanyStore?.postalCode,
+                address: userStore?.belongingCompanyStore?.address,
+                review: userStore?.belongingCompanyStore?.review
             })
         }
     }, [ userOwner, userStore ])

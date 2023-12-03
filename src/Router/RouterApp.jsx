@@ -9,6 +9,8 @@ import { RegisterRouter } from "../Registers/Router/RegisterRouter"
 import { PrivateRouter } from "./PrivateRouter"
 import { CompanyRouter } from "../Companies"
 import { PurcharseRouter } from "../Purcharse"
+import { RolesRouter } from "../Roles"
+import { StoreRouter } from "../Stores"
 
 export const RouterApp = ()=>{
     return (
@@ -48,6 +50,12 @@ export const RouterApp = ()=>{
                     <CompanyRouter/>
                 </PrivateRouter>
             }/>
+
+            <Route path="/roles/*"  element={
+                <RolesRouter/>
+            }/>
+
+            <Route path="/stores/*" element={<StoreRouter/>}/>
         </Routes>
     )
 }

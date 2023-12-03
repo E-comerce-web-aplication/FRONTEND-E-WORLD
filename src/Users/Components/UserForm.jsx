@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react"
-import { NextButton } from "../../../Common/Components/NextButton"
-import { finalizatedUserStoreForm } from "../../../Store/auth/thunks"
-import { useForm } from "../../../Hooks/useForm"
-import { useDispatch } from "react-redux"
-
+import { useForm } from "../../Hooks/useForm"
+import { useDispatch, useSelector } from "react-redux"
+import { createUserStore, createUserCompany } from "../../Store/users/thunks"
+import { CheckBadgeIcon } from "@heroicons/react/24/outline"
+import { useNavigate } from "react-router-dom"
 
 const initialState = {
     displayName: '',
     email: '',
     password: '',
+    organization: '',
     role: 'Administrador'
 }
 
@@ -19,8 +20,13 @@ const validationForm = {
     role: [( value )=> value?.trim().length > 0]
 }
 
-export const UserStoreForm = ()=>{
+export const UserForm = ()=>{
     const [ roles, setRoles ] = useState([])
+
+
+    const { token } = useSelector( state => state.auth )
+    const { created, userOwner } = useSelector( state => state.user )
+    const navigate = useNavigate()
 
     useEffect(()=>{ 
         const getRole = async ()=>{
@@ -28,8 +34,8 @@ export const UserStoreForm = ()=>{
             const res = await req.json()
             setRoles(res)
         }
-
-        getRole()
+        
+       getRole()
     },[ ])
 
     const buttonRef = useRef()
@@ -37,8 +43,9 @@ export const UserStoreForm = ()=>{
     const emailRef = useRef()
     const passwordRef = useRef()
     const roleRef = useRef()
+    const organizationRef = useRef()
 
-    const { displayName, email, password, onInputChange, onNextInput, disableButton,
+    const { displayName, email, password,role, onInputChange, onNextInput,organization, disableButton,
            setDisableButton, formState} = useForm( initialState, validationForm )
 
     useEffect(()=>{
@@ -47,15 +54,28 @@ export const UserStoreForm = ()=>{
 
     const dispatch = useDispatch()
 
-    const onFinalizatedForm = ()=>{
-        dispatch( finalizatedUserStoreForm(formState) )
+    const onCreate = ()=>{
+        if(organization == 'Tienda' ){
+            dispatch( createUserStore({
+                displayName: displayName,
+                password: password,
+                email: email,
+                role: role
+            }, token, userOwner?.companyOwner?.id ) )
+        }
+        dispatch( createUserCompany({
+            displayName: displayName,
+            password: password,
+            email: email,
+            role: role
+        }, token ) )
     }
-   
+   console.log(token)
     return (
         <section className="flex flex-col">
-            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu tienda</h2>
+            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu organizacion</h2>
             <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[9.4rem] z-10'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[9.9rem] z-10'>
                         Nombre del usuario
                         </label>
                     <input
@@ -98,7 +118,7 @@ export const UserStoreForm = ()=>{
                     name='role'
                     onChange={onInputChange}
                     ref={roleRef}
-                    onKeyDown={(e)=>onNextInput(e, buttonRef)}
+                    onKeyDown={(e)=>onNextInput(e, organizationRef)}
                     className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 bg-white' id="">
                         <option>...elegir un role</option>
                        {
@@ -111,9 +131,37 @@ export const UserStoreForm = ()=>{
                       
                     </select>
              </div>
+             <div className='flex flex-col self-center w-80'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.3rem] z-10'>Organizacion?</label>
+                    <select
+                    name='organization'
+                    onChange={onInputChange}
+                    ref={organizationRef}
+                    value={organization}
+                    onKeyDown={(e)=>onNextInput(e, buttonRef)}
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 bg-white' id="">
+                        <option>Tienda</option> 
+                        <option>Compañia</option>
+                    </select>
+             </div>
             <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80">
-               <NextButton   disableButton={disableButton} next={4} onFinalizatedForm={onFinalizatedForm} nextRef={buttonRef} />    
+            <button 
+            onClick={onCreate}
+            disabled={!disableButton}
+            className={`${
+                disableButton === true
+                ? "  border-theme bg-theme"
+                : "bg-black/20"    
+            } text-xl font-bold border-2 h-10 text-white rounded-lg hover:scale-[1.02]`}>
+                Crear
+            </button>
             </section>
+            { created !== false && (
+                <div className="absolute bg-white top-36 z-30 border-2 rounded-lg self-center">
+                    <CheckBadgeIcon className="text-green-600"/>
+                    <p className="m-1 text-green-600 font-bold">Tu Usuario ha sido creado perfectamente</p>
+                </div>
+            )}
         </section>
     )
 }
