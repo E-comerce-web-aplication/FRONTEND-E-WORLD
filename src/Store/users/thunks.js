@@ -1,8 +1,8 @@
 import { createNewUser, loadProfileOwner, loadProfileUserStore, loadUsers } from "./userSlice"
 import { loadStores } from "../company/companySlice"
 
-const API_URL = 'http://localhost:3000/api/v1/user'
-const STORE_API_URL = "http://localhost:3000/api/v1/store"
+const API_URL = 'http://3.135.216.50:8080/api/v1/user'
+const STORE_API_URL = "http://3.135.216.50:8080/api/v1/store"
 
 export const userInformation = ( token )=>{
     return async ( dispatch  )=>{

@@ -1,6 +1,6 @@
 import { loadCompanies, loadOneCompany, preloadOneCompany, updateCompany } from "./companySlice"
 
-const API_URL = "http://localhost:3000/api/v1/company"
+const API_URL = "http://3.135.216.50:8080/api/v1/company"
 
 export function getAllCompanies ( token ) {
     return async ( dispatch )=>{

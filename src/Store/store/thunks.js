@@ -1,7 +1,7 @@
 import { addStore, loadStores } from "./storeSlice"
 
 
-const API_URL = 'http://localhost:3000/api/v1/store'
+const API_URL = 'http://3.135.216.50:8080/api/v1/store'
 
 
 

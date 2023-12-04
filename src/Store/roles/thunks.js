@@ -1,6 +1,6 @@
 import { createNewRole, loadRoles } from "./roleSlice"
 
-const API_URL = 'http://localhost:3000/api/v1/roles'
+const API_URL = 'http://3.135.216.50:8080/api/v1/roles'
 
 export const getAllRoles = ( organization, id )=>{
     return async ( dispatch )=>{
