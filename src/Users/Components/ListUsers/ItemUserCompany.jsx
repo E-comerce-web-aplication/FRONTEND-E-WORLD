@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 
 
 
-export const ItemUser = ({ data })=>{
+export const ItemUserCOmpany = ({ data })=>{
     const [ information, setInformation ] = useState([])
 
    useEffect(()=>{
-    setInformation(data.informationUserCompanyStore)
+    setInformation(data.informationUserCompany)
    },[])
 
     return (
@@ -15,11 +15,7 @@ export const ItemUser = ({ data })=>{
                 <p className="flex gap-1 text-2xl font-bold">
                 { information?.displayName }
                 </p>
-                {
-                    data.companyStore !== null && (
-                        <p className="ml-auto w-36 font-bold border-2 rounded-lg p-1 text-sm">Usuario de tienda</p>
-                    )
-                }
+                <p className="ml-auto w-36 font-bold border-2 rounded-lg p-1 text-sm">Usuario de compañia</p>
             </div>
             <p className="flex gap-1">
                 <span>Email:</span>

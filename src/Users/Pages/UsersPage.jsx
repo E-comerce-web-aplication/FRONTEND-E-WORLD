@@ -5,6 +5,7 @@ import { getAllUsers } from "../../Store/users/thunks"
 import { UserList } from "../Components/ListUsers/UserList"
 import { ItemUser } from "../Components/ListUsers/ItemUser"
 import { useNavigate } from "react-router-dom"
+import { ItemUserCOmpany } from "../Components/ListUsers/ItemUserCompany"
 
 export const UserPage = ()=>{
 
@@ -24,6 +25,7 @@ export const UserPage = ()=>{
             pathname: '/users/create_user'
         })
     }
+    console.log(users)
     return (
         <CommonLayout>
             <main className="flex flex-col gap-1 h-[100vh] justify-center">
@@ -32,6 +34,11 @@ export const UserPage = ()=>{
                     {
                         users?.store?.map((user)=>(
                             <ItemUser data={ user } key={user.id}/>
+                        ))
+                    }
+                    {
+                        users?.company?.map((user)=>(
+                            <ItemUserCOmpany data={ user } key={user.id}/>
                         ))
                     }
                 </UserList>

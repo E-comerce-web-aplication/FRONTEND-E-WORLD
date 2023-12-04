@@ -94,6 +94,7 @@ export const createUserCompany = ( data, token )=>{
                 body: JSON.stringify(data)
             } )
             const req = await res.json()
+            console.log(req)
             
             if(req.error !== null) return dispatch( createNewUser({
                 created: true,

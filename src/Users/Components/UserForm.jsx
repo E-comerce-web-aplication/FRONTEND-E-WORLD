@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { createUserStore, createUserCompany } from "../../Store/users/thunks"
 import { CheckBadgeIcon } from "@heroicons/react/24/outline"
 import { useNavigate } from "react-router-dom"
+import { createNewUser } from "../../Store/users/userSlice"
 
 const initialState = {
     displayName: '',
@@ -69,8 +70,22 @@ export const UserForm = ()=>{
             email: email,
             role: role
         }, token ) )
+
+        setTimeout(()=>{
+            navigate({
+                pathname: '/users/'
+            })
+        },1000)
     }
-   console.log(token)
+
+    useEffect(()=>{
+        dispatch( createNewUser({
+            created: false,
+            error: null
+        }) )
+    }, [])
+
+   
     return (
         <section className="flex flex-col">
             <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu organizacion</h2>
