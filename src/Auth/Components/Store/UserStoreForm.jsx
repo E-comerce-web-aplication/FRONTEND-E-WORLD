@@ -24,7 +24,7 @@ export const UserStoreForm = ()=>{
 
     useEffect(()=>{ 
         const getRole = async ()=>{
-            const req = await fetch('http://localhost:3000/api/v1/roles/default')
+            const req = await fetch('http://3.135.216.50:8080/api/v1/roles/default')
             const res = await req.json()
             setRoles(res)
         }

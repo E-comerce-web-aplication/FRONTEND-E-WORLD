@@ -3,7 +3,7 @@ import { finishedOrganizationForm, finishedOwnerForm, finishedStoreForm,
      finishedUserStoreForm, login, register, storeOrCompanyRegister} from "./authSlice"
 
 
-const urlAPI = 'http://localhost:3000/api/v1/auth'
+const urlAPI = 'http://3.135.216.50:8080/api/v1/auth'
 
 export const RegisterCompany = ( ownerCompany )=>{
 

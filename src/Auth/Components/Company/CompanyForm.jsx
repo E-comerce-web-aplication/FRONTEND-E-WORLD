@@ -50,7 +50,7 @@ export const CompanyForm = ()=>{
 
     useEffect(()=>{
         const getCategories = async ()=>{
-            const res = await fetch("http://localhost:3000/api/v1/organization/categories")
+            const res = await fetch("http://3.135.216.50:8080/api/v1/organization/categories")
             const data = await res.json()
             setCategories(data)
         }
