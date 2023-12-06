@@ -44,8 +44,8 @@ export const StoreForm = ()=>{
     }
 
     return (
-        <section className="flex flex-col">
-            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Informacion de tienda</h2>
+        <section className="flex flex-col md: mt-10">
+            <h2 className="self-center border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme w-80">Informacion de tienda</h2>
             <section className="flex flex-col gap-1">
                 <div className='flex flex-col self-center w-80'>
                     <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[10.2rem] z-10'>Nombre de la tienda</label>

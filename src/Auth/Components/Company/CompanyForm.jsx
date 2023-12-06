@@ -50,7 +50,7 @@ export const CompanyForm = ()=>{
 
     useEffect(()=>{
         const getCategories = async ()=>{
-            const res = await fetch("http://localhost:3000/api/v1/organization/categories")
+            const res = await fetch("http://3.135.216.50/api/v1/organization/categories")
             const data = await res.json()
             setCategories(data)
         }
@@ -65,7 +65,7 @@ export const CompanyForm = ()=>{
 
     return (
         <section className="flex flex-col">
-            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">
+            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme self-center">
                 { `Informacion de tu  ${ organization === 'company' ? 'compañia' : 'tienda'  }` }
             </h2>
             <section className="flex flex-col gap-1">

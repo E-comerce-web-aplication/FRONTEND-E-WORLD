@@ -18,8 +18,8 @@ export const InventoryCompanyPage = ()=>{
    
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1">
-                <h2 className="border-2 border-theme text-theme p-1 m-1 rounded-lg font-bold text-xl text-center">Inventario general</h2>
+            <main className="flex flex-col gap-1 w-[100%]">
+                <h2 className="border-2 border-theme text-theme md:text-4xl self-center p-1 m-1 rounded-lg font-bold text-xl text-center">Inventario general</h2>
                <ListProduct>
                     {
                         inventoryCompany.map((inventory)=>(

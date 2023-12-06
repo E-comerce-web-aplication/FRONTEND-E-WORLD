@@ -87,16 +87,18 @@ export const FilterProducts = ()=>{
     }
     return (
         <section className="flex flex-col gap-1">
-          <div className="flex gap-1 m-1 pl-10 self-center">
-            <input 
-            onChange={onFindProductByName}
-            type="text" 
-            placeholder="nombre del producto"
-            className="w-80 border-2 focus:outline-theme/50 focus:scale-[1.02] font-semibold rounded-s-md pl-2 text-black/70"
-            />
-            <MagnifyingGlassCircleIcon className="relative h-10 right-10 bg-theme text-white rounded-e-md hover:scale-[1.02]"/>
-          </div>
-          <section className="self-center flex flex-col gap-1 h-[32vh] overflow-y-auto">
+          <div className="flex flex-col md:flex-row gap-1">
+          
+          <section className="self-center flex flex-col gap-1 h-[32vh] md:h-[40vh] overflow-y-auto">
+            <div className="flex gap-1 m-1 pl-10 self-center">
+                <input 
+                onChange={onFindProductByName}
+                type="text" 
+                placeholder="nombre del producto"
+                className="w-80 md:w-96 border-2 md:h-12 focus:outline-theme/50 focus:scale-[1.02] font-semibold rounded-s-md pl-2 text-black/70"
+                />
+                <MagnifyingGlassCircleIcon className="relative h-10 md:h-12 right-10 bg-theme text-white rounded-e-md hover:scale-[1.02]"/>
+            </div>
             {
                 product.map((product)=>(
                     <AddPurcharseItem
@@ -119,6 +121,8 @@ export const FilterProducts = ()=>{
                 }
             </section>
           </section>
+
+          </div>
           <PurcharseButtons onLoadProducts={onLoadProducts} products={purcharseProduct}/>
         </section>
     )

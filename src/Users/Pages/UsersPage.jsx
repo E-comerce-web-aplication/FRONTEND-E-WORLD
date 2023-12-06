@@ -6,6 +6,7 @@ import { UserList } from "../Components/ListUsers/UserList"
 import { ItemUser } from "../Components/ListUsers/ItemUser"
 import { useNavigate } from "react-router-dom"
 import { ItemUserCOmpany } from "../Components/ListUsers/ItemUserCompany"
+import { PlusCircleIcon } from "@heroicons/react/24/solid"
 
 export const UserPage = ()=>{
 
@@ -28,8 +29,8 @@ export const UserPage = ()=>{
     console.log(users)
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1 h-[100vh] justify-center">
-                <h2 className="text-3xl font-bold text-center">Usuarios de tu organizacion</h2>
+            <main className="flex flex-col gap-1 h-[100vh] m-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-center border-dashed border-theme border-2 self-center p-1 rounded-lg text-theme mb-8 mt-2">Usuarios de tu organizacion</h2>
                 <UserList>
                     {
                         users?.store?.map((user)=>(
@@ -42,9 +43,12 @@ export const UserPage = ()=>{
                         ))
                     }
                 </UserList>
+                <div className="flex rounded-lg border-2 gap-1 fixed bottom-32 right-1 p-1  bg-green-600 border-green-600">
                 <button 
                 onClick={onChangeFormUserCreate}
-                className="border-2 rounded-lg w-56 self-center h-10 font-bold bg-green-600 border-green-600 text-white text-xl hover:scale-[1.02]" >Agregar usuario</button>
+                className="self-end h-10 font-bold text-white text-xl hover:scale-[1.02]" >Agregar usuario</button>
+                <PlusCircleIcon className="h-8 self-center text-white hover:animate-spin cursor-pointer"/>
+                </div>
             </main>
         </CommonLayout>
     )

@@ -7,8 +7,8 @@ export const CreateProductPage = ()=>{
     return (
         <CommonLayout>
             <ProductProvider>
-                <main className='flex flex-col'>
-                    <h2 className='font-bold bg-theme m-1 rounded-lg p-1 text-white 
+                <main className='flex flex-col w-[100%]'>
+                    <h2 className='font-bold bg-theme m-1 self-center md:text-3xl md:w-80 rounded-lg p-1 text-white 
                     text-center text-xl' >Crear un producto</h2>
                     <IndexForm/>
                 </main>    

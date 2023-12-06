@@ -1,8 +1,8 @@
 import { createNewUser, loadProfileOwner, loadProfileUserStore, loadUsers } from "./userSlice"
 import { loadStores } from "../company/companySlice"
 
-const API_URL = 'http://localhost:3000/api/v1/user'
-const STORE_API_URL = "http://localhost:3000/api/v1/store"
+const API_URL = 'http://3.135.216.50/api/v1/user'
+const STORE_API_URL = "http://3.135.216.50/api/v1/store"
 
 export const userInformation = ( token )=>{
     return async ( dispatch  )=>{
@@ -13,17 +13,20 @@ export const userInformation = ( token )=>{
             } 
         })
         const response = await request.json()
-       
+      
+
+        if( response.session === "owner" ){
+            dispatch( loadProfileOwner( { userOwner: response?.response }) )
+        }
+        if( response.session === "store" ){
+           
+            dispatch( loadProfileUserStore( { userStore: response?.response }) )
+        }
         const stores = await fetch(`${STORE_API_URL}/${response.response.companyOwner.id}`)
         const responseStores = await stores.json()
         
         dispatch( loadStores({ stores: responseStores }) )
-        if( response.session == "owner" ){
-            dispatch( loadProfileOwner( { userOwner: response?.response }) )
-        }
-        if( response.session == "store" ){
-            dispatch( loadProfileUserStore( { userStore: response?.response }) )
-        }
+
     }
 }
 

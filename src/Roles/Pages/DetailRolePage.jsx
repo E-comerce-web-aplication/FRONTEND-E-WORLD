@@ -20,7 +20,7 @@ export const DetailRolePage = ()=>{
   
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1">
+            <main className="flex flex-col gap-1 justify-center w-[100%] ">
                 <RoleList>
                     {
                         roles?.map((role)=>(

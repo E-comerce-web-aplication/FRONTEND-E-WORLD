@@ -16,7 +16,7 @@ export const ItemProduct = ({ data })=>{
     return (
         <section 
         onClick={()=>onChangeDetailProduct(data.id)}
-        className="flex flex-col gap-1 basis-1/2 border-2 p-1 rounded-lg cursor-pointer hover:scale-[1.02]">
+        className="flex flex-col gap-1  border-2 p-1 rounded-lg cursor-pointer hover:scale-[1.02] md:w-[25rem]">
             <figure className="rounded-l-lg bg-theme">
                 <img className='h-48 md:h-72 w-full' src={data.images[0]}/>
             </figure>

@@ -8,6 +8,7 @@ export const authSlice = createSlice({
     status: 'no-registered',
     error: null,
     token: null,
+    created: false,
     organization: null, // 'store', 'company' , 'storeOfCompany'
     owner: {
         displayName: '',
@@ -50,6 +51,7 @@ export const authSlice = createSlice({
 
       register: ( state, { payload } )=>{
         state.status = payload.status
+        state.created = payload.created
         state.error = payload.error
       },
 
@@ -102,6 +104,9 @@ export const authSlice = createSlice({
       },
       signOut: ( state, { payload } )=>{
         state.status = payload.status
+      },
+      cleaningCreated: ( state, { payload } )=>{
+        state.created = payload.created
       }
     },
 })
@@ -115,6 +120,7 @@ export const {
     register,
     login,
     signOut,
-    storeOrCompanyRegister
+    storeOrCompanyRegister,
+    cleaningCreated
 } = authSlice.actions
 

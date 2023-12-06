@@ -52,7 +52,7 @@ export const ProductInformation = ()=>{
         <div className='flex flex-col gap-1'>
             <form className='flex flex-col'>
                 <div className='flex flex-col self-center w-80'>
-                    <label htmlFor='name' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10'>Nombre del producto</label>
+                    <label htmlFor='name' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10 md:text-xl md:w-[14rem]'>Nombre del producto</label>
                     <input 
                     id='name'
                     ref={nameRef}
@@ -62,10 +62,10 @@ export const ProductInformation = ()=>{
                     type="text"
                     onChange={onInputChange} 
                     placeholder='sombria ejemplo'
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 md:h-14 md:w-80 text-xl'/>
                 </div>
                 <div className='flex flex-col self-center w-80'>
-                    <label htmlFor='title' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-40 z-10'>Titulo del producto</label>
+                    <label htmlFor='title' className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-40 z-10 md:text-xl md:w-[13rem]'>Titulo del producto</label>
                     <input 
                     id='title'
                     ref={titleRef}
@@ -75,10 +75,10 @@ export const ProductInformation = ()=>{
                     type="text"
                     onChange={onInputChange} 
                     placeholder='sombria ejemplo'
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 md:h-14 md:w-80 text-xl'/>
                 </div>
                 <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-14 z-10'>Precio</label>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-14 z-10 md:text-xl md:w-[4.5rem]'>Precio</label>
                     <input
                     ref={priceRef}
                     name='price'
@@ -88,28 +88,28 @@ export const ProductInformation = ()=>{
                     type="number"
                     min={0}
                     placeholder='23.45' 
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 md:h-14 md:w-80 text-xl'/>
                 </div>
                 <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10'>Condiciones de envio</label>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-44 z-10 md:text-xl md:w-[14rem]'>Condiciones de envio</label>
                     <textarea
                     ref={conditionsRef}
                     name='sendConditions'
                     onChange={onInputChange}
                     value={sendConditions}
                     onKeyDown={(e)=>onNextInput(e,descriptionRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50'>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50 md:h-24 md:w-80 text-xl'>
                     </textarea>
                 </div>
                 <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-24 z-10'>Descripcion</label>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-24 z-10 md:text-xl md:w-[8rem]'>Descripcion</label>
                     <textarea
                     ref={descriptionRef}
                     name='description'
                     onChange={onInputChange}
                     value={description}
                     onKeyDown={(e)=>onNextInput(e,nextRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50'>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg pt-3 h-20 pl-2 font-bold text-black/50 md:h-24 md:w-80 text-xl'>
                     </textarea>
                 </div>
             </form>

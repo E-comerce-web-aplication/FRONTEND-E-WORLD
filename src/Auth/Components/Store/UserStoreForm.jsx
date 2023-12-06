@@ -13,7 +13,7 @@ const initialState = {
 }
 
 const validationForm = {
-    displayName: [(value)=>value?.trim().length > 0 ],
+    displayName: [(value)=>value?.trim().length > 14 ],
     email: [( value )=> value?.trim().length > 0],
     password: [( value )=> value?.trim().length > 7],
     role: [( value )=> value?.trim().length > 0]
@@ -24,7 +24,7 @@ export const UserStoreForm = ()=>{
 
     useEffect(()=>{ 
         const getRole = async ()=>{
-            const req = await fetch('http://localhost:3000/api/v1/roles/default')
+            const req = await fetch('http://http://3.135.216.50/api/v1/roles/default')
             const res = await req.json()
             setRoles(res)
         }
@@ -52,10 +52,10 @@ export const UserStoreForm = ()=>{
     }
    
     return (
-        <section className="flex flex-col">
-            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu tienda</h2>
+        <section className="flex flex-col md:mt-10">
+            <h2 className="self-center border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu tienda</h2>
             <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[9.4rem] z-10'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[10rem] z-10'>
                         Nombre del usuario
                         </label>
                     <input

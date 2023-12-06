@@ -10,24 +10,24 @@ export const ItemUser = ({ data })=>{
    },[])
 
     return (
-        <div className="self-center flex flex-col gap-1 border-2 rounded-lg p-1 m-1 max-w-[28rem]">
-            <div className="flex gap-1 border-b-2 border-black/70">
-                <p className="flex gap-1 text-2xl font-bold">
+        <div className="self-center flex flex-col gap-1 border-2 border-theme/70 rounded-lg p-1 m-1 md:w-[30rem] md:h-32">
+            <div className="flex gap-1">
+                <p className="flex gap-1 text-2xl font-bold md:w-[20rem] md:pt-2 text-theme p-1 border-b-2 border-theme">
                 { information?.displayName }
                 </p>
                 {
                     data.companyStore !== null && (
-                        <p className="ml-auto w-36 font-bold border-2 rounded-lg p-1 text-sm">Usuario de tienda</p>
+                        <p className="w-36  md:pl-2 md:h-8 font-bold border-2 rounded-lg p-1 text-sm text-white border-theme bg-theme ">Usuario de tienda</p>
                     )
                 }
             </div>
             <p className="flex gap-1">
-                <span>Email:</span>
-                <span>{ information?.email }</span>
+                <span className="font-bold md:text-lg text-theme/80">Email:</span>
+                <span className="font-bold md:text-xl text-theme/90">{ information?.email }</span>
             </p>
             <p className="flex gap-1">
-                <span>Role:</span>
-                <span>Administrador</span>
+                <span className="font-bold md:text-lg text-theme/80">Role:</span>
+                <span className="font-bold md:text-xl text-theme/90">Administrador</span>
             </p>
         </div>
     )

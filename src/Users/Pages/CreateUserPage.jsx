@@ -4,7 +4,7 @@ import { UserForm } from "../Components/UserForm"
 export const CreateUserPage = ()=>{
     return (
         <CommonLayout>
-            <main className="flex gap-1 flex-col h-[90vh] justify-center">
+            <main className="flex gap-1 flex-col  justify-center w-[100%]">
                 <UserForm/>
             </main>
         </CommonLayout>

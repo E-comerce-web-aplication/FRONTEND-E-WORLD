@@ -2,7 +2,7 @@ import { uploadImage } from "../utils/uploadImages"
 import { createProduct, finishedImageForm, finishedInformationForm, loadProducts } from "./productSlice"
 
 
-const API_URL = 'http://localhost:5167/api/Products'
+const API_URL = 'http://3.149.254.125/api/Products'
 
 
 
@@ -36,6 +36,7 @@ const createdProduct = async ( data, images )=>{
         } )
     
         const res = await req.json()
+        console.log(res)
     
         return res
     } catch (error) {

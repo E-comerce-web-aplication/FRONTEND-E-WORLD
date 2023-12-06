@@ -39,9 +39,9 @@ export const ImageForm = ()=>{
     return (
         <div className="flex flex-col gap-1 mt-1 mb-1">
             <h2 className="self-center font-bold m-1 p-1 border-2 border-dashed border-theme 
-            rounded-md text-theme">Agrega imagenes de tu producto</h2>
+            rounded-md text-theme md:text-2xl">Agrega imagenes de tu producto</h2>
             <form className='self-center flex flex-col'>
-                <figure className="flex justify-center flex-wrap h-[60vh] pl-1 gap-2 overflow-y-auto">
+                <figure className="flex justify-center flex-wrap h-[60vh] w-[90vh] pl-1 gap-2 overflow-y-auto">
                     {
                         image.map((image)=>{
                             return (

@@ -13,7 +13,7 @@ export const ListRolesPage = ()=>{
    
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1">
+            <main className="flex flex-col md:flex-row md:flex-wrap gap-1">
                 {
                     stores?.map((store)=>(
                         <StoreItem data={store} key={store.id}/>

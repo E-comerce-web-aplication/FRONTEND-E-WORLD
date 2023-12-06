@@ -7,6 +7,7 @@ import { purcharseSlice } from "./purcharse/purcharseSlice";
 import { inventorySlice } from "./inventory/inventorySlice";
 import { storeSlice } from "./store/storeSlice";
 import { roleSlice } from "./roles/roleSlice";
+import { orderSlice } from "./order/orderSlices";
 
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
         purchase: purcharseSlice.reducer,
         inventory: inventorySlice.reducer,
         store: storeSlice.reducer,
-        role: roleSlice.reducer
+        role: roleSlice.reducer,
+        order: orderSlice.reducer
     }
 })

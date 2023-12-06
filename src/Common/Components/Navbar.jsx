@@ -32,7 +32,7 @@ export const Navbar = ()=>{
             
             <div className="flex gap-3 border-b-2 border-white"> 
                 <Bars3Icon onClick={onOpenMenu} className="sm:hidden self-center text-white cursor-pointer h-10"/>    
-                <NavLink className="ml-5 cursor-pointer basis-[48%]" to="/">
+                <NavLink className="ml-5 cursor-pointer basis-[48%]" to="/Home">
                    <ShopiLogo whereIcon="menu" color="white"/>
                 </NavLink>
                 <AuthenticatedProfile status={status}/>
@@ -48,53 +48,50 @@ export const Navbar = ()=>{
 
             <div className={`${openMenu === true ? "absolute z-20 flex flex-col bg-theme w-full top-[4.1rem]" : "hidden sm:block w-56"} pt-2`}>
                <div className="flex flex-col gap-2 font-bold text-lg ">
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
+                    <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
                         <NavLink to="/Products">
                             Productos
                         </NavLink>
                     </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/inventory">
-                            Inventario
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/orders">
-                            Usuarios
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/orders">
-                            Tiendas
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/registers">
-                            Registros
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/orders">
-                            Pedidos
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/purcharse">
-                            Compras
-                        </NavLink>
-                    </li>
-                    <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                        <NavLink to="/company">
-                            Compañias
-                        </NavLink>
-                    </li>
                     {
-                        organizationSession === "store" && (
-                            <li className="self-center text-theme bg-white p-1 rounded-lg hover:scale-[1.02] w-24 text-center">
-                                <NavLink to="/company">
-                                    Compañias
+                        organizationSession === 'owner' && (
+                            <>
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                                <NavLink to="/inventory">
+                                    Inventario
                                 </NavLink>
                             </li>
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                                <NavLink to="/users">
+                                    Usuarios
+                                </NavLink>
+                            </li>
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                                <NavLink to="/stores">
+                                    Tiendas
+                                </NavLink>
+                            </li>
+                        
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                                <NavLink to="/orders">
+                                    Pedidos
+                                </NavLink>
+                            </li>
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                                <NavLink to="/purcharse">
+                                    Compras
+                                </NavLink>
+                            </li>
+                            </>
+                        )
+                    }
+                    {
+                        organizationSession === 'store' && (
+                            <li className="self-center text-white border-white border-2 p-1 rounded-lg hover:scale-[1.02] w-32 text-center">
+                            <NavLink to="/orders/create_order">
+                                Hacer pedido
+                            </NavLink>
+                        </li>
                         )
                     }
                </div>

@@ -1,38 +1,25 @@
 import { CommonLayout } from "../../Layout"
-import { OrderList } from "../Components/OrderList"
-import { OrderItem } from "../Components/OrderItem"
-import { FilterOrder } from "../Components/FilterOrder"
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"
+import { PlusIcon} from "@heroicons/react/24/solid"
+import { useSelector } from "react-redux"
+import { StoreOrder } from "../Components/StoreOrder"
 
 export const ListOrderPage = ()=>{
-    const items = [1,2,3,4,5,6,7,8]
+
+    const { stores } = useSelector( state => state.store )
+   
     return (
         <CommonLayout>
             <main className="flex flex-col gap-1 mt-2">
-               <section className="flex flex-row gap-1 justify-center ml-9 mr-9">
-                  <FilterOrder/>
-                  <p className="border-2 rounded-md border-dashed p-1 border-theme text-theme font-semibold w-44">Estas son tus ordenes puedes filtrarlas buscarlas entre otras opciones</p>
-               </section>
-                <OrderList>
+                <div className="flex flex-wrap">
                     {
-                        items.map(()=>(<OrderItem key={1}/>))
+                        stores?.map(( store )=>(
+                            <StoreOrder data={store} key={store.id}/>
+                        ))
                     }
-                </OrderList>
-                <section className="flex gap-1 self-center m-1">
-                    <div className="p-1 border-theme border-2 rounded-md text-theme cursor-pointer hover:scale-[1.02]">
-                      <ChevronLeftIcon className="h-5"/>
-                    </div>
-                    <section className="flex gap-2 font-bold">
-                        <p className="self-center">1</p>
-                        <p>...</p>
-                        <p className="self-center">10</p>
-                        <p>...</p>
-                        <p className="self-center">20</p>
-                    </section>
-                   <div className="p-1 border-theme border-2 rounded-md text-theme cursor-pointer hover:scale-[1.02]">
-                      <ChevronRightIcon className="h-5"/>
-                   </div>
-               </section>
+                </div>
+                <button className="fixed z-30 bg-theme bottom-36 right-3 rounded-[100%] p-1 hover:scale-[1.02]">
+                    <PlusIcon className="h-11 text-white"/>
+                </button>
             </main>
         </CommonLayout>
     )

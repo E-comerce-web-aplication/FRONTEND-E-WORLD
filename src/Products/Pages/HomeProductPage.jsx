@@ -9,24 +9,29 @@ import { getAllProducts } from '../../Store/products/thunks'
 
 export const HomeProductPage = ()=>{
     const { userOwner } = useSelector( state => state.user )
+    const { organizationSession, userStore } = useSelector( state => state.user)
     const dispatch = useDispatch()
    
     useEffect(()=>{
-        dispatch( getAllProducts( userOwner?.companyOwner?.id) )
+        if( organizationSession !== 'store' ){
+            dispatch( getAllProducts( userOwner?.companyOwner?.id) )
+        }
+        dispatch( getAllProducts( userStore?.belongingCompanyStore?.company ) )
     }, [])
     const { productList } = useSelector( state => state.product)
 
+    
   
     return (
         <CommonLayout>
             <main className='flex flex-col gap-1  pl-1 '>
             <h2 className='self-center md:w-96 border-2 p-1 m-1 rounded-lg border-theme text-theme 
-                    text-center font-bold text-xl'>Mis productos</h2>
+                    text-center font-bold text-xl md:text-3xl'>Mis productos</h2>
             <NextProducts/>
                 <section className='self-center flex-col basis-1/2 justify-center'>
                     <ProductList>
                         {
-                            productList.map(
+                            productList?.map(
                             (product)=>
                                 (
                                 <ItemProduct data={product}  key={product.id}/>

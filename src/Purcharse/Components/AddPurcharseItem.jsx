@@ -14,7 +14,7 @@ export const AddPurcharseItem = ({ data, isPurcharseList, addPurcharseList, dele
     }, [ quantity ])
 
     return (
-        <div className=" border-2 flex gap-2 rounded-md p-1 hover:scale-[1.02]">
+        <div className=" border-2 flex gap-2 rounded-md p-1 hover:scale-[1.02] md:h-28">
             <img className="h-16" src={data?.images[0]}/>
             <div className="flex flex-col basis-[70%]">
                 <h2 className="text-xl font-bold ">{ data?.productName }</h2>

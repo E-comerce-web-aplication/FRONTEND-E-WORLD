@@ -24,9 +24,9 @@ export const DetailProductPage = ()=>{
 
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1">
+            <main className="flex flex-col gap-1 md:h-[90vh]">
                 <h2 className="self-center border-2 border-theme text-theme p-1 rounded-lg m-1 
-                font-bold">{ product?.title }</h2>
+                font-bold md:text-3xl">{ product?.title }</h2>
               <div className=" flex gap-1">
                    <ImageProduct data={product} />
                     <DetailSection data={product} />

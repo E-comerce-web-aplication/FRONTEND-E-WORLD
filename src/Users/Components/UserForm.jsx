@@ -87,10 +87,10 @@ export const UserForm = ()=>{
 
    
     return (
-        <section className="flex flex-col">
-            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme">Crea un usuario para tu organizacion</h2>
-            <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[9.9rem] z-10'>
+        <section className="flex flex-col self-center">
+            <h2 className="border-2 font-bold text-center text-2xl m-1 p-1 rounded-lg border-theme text-theme md:text-3xl">Crea un usuario para tu organizacion</h2>
+            <div className='flex flex-col self-center w-80 md:w-[29rem]'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[9.9rem] z-10 md:w-[13rem] md:text-xl'>
                         Nombre del usuario
                         </label>
                     <input
@@ -101,10 +101,10 @@ export const UserForm = ()=>{
                         onKeyDown={(e)=>onNextInput(e, emailRef)}
                         type="text"
                         placeholder='Juan Carlos Estrada sustre' 
-                        className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                        className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 md:h-14 md:text-lg'/>
             </div>
-            <div className='flex flex-col self-center w-80'>
-                <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-12 z-10'>Email</label>
+            <div className='flex flex-col self-center w-80 md:w-[29rem]'>
+                <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-14 z-10 md:text-lg'>Email</label>
                 <input
                     name='email'
                     value={email}
@@ -113,10 +113,11 @@ export const UserForm = ()=>{
                     onKeyDown={(e)=>onNextInput(e, passwordRef)}
                     type="email"
                     placeholder='example.email@gmail.com' 
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50
+                     md:h-14 md:text-lg'/>
             </div>
-            <div className='flex flex-col self-center w-80'>
-                <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-20 z-10'>Password</label>
+            <div className='flex flex-col self-center w-80 md:w-[29rem]'>
+                <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-20 z-10 md:w-24 md:text-lg'>Password</label>
                 <input
                     name='password'
                     value={password}
@@ -125,16 +126,18 @@ export const UserForm = ()=>{
                     onKeyDown={(e)=>onNextInput(e, roleRef)}
                     type="password"
                     placeholder='**********' 
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50'/>
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-
+                    black/50 md:h-14 md:text-lg'/>
             </div>
-            <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.86rem] z-10'>Role de usuario</label>
+            <div className='flex flex-col self-center w-80 md:w-[29rem]'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.86rem] z-10 md:w-[10rem] md:text-lg'>Role de usuario</label>
                     <select
                     name='role'
                     onChange={onInputChange}
                     ref={roleRef}
                     onKeyDown={(e)=>onNextInput(e, organizationRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 bg-white' id="">
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 
+                    bg-white md:h-14 md:text-lg' id="">
                         <option>...elegir un role</option>
                        {
                         roles.map((role)=>(
@@ -146,20 +149,21 @@ export const UserForm = ()=>{
                       
                     </select>
              </div>
-             <div className='flex flex-col self-center w-80'>
-                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.3rem] z-10'>Organizacion?</label>
+             <div className='flex flex-col self-center w-80 md:w-[29rem]'>
+                    <label className='font-bold text-theme bg-white p-1 ml-2 relative top-4 w-[7.3rem] z-10 md:text-lg md:w-[8rem]'>Organizacion?</label>
                     <select
                     name='organization'
                     onChange={onInputChange}
                     ref={organizationRef}
                     value={organization}
                     onKeyDown={(e)=>onNextInput(e, buttonRef)}
-                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 bg-white' id="">
+                    className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-theme rounded-lg h-12 pl-2 font-bold text-black/50 
+                    bg-white md:h-14 md:text-lg' id="">
                         <option>Tienda</option> 
                         <option>Compañia</option>
                     </select>
              </div>
-            <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80">
+            <section className="flex flex-col gap-1 m-1 mt-2 self-center w-80 md:w-[29rem]">
             <button 
             onClick={onCreate}
             disabled={!disableButton}
@@ -167,7 +171,7 @@ export const UserForm = ()=>{
                 disableButton === true
                 ? "  border-theme bg-theme"
                 : "bg-black/20"    
-            } text-xl font-bold border-2 h-10 text-white rounded-lg hover:scale-[1.02]`}>
+            } text-xl font-bold border-2 h-10 text-white rounded-lg hover:scale-[1.02] md:h-14 md:text-2xl mb-1`}>
                 Crear
             </button>
             </section>

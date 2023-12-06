@@ -23,17 +23,12 @@ export const OptionPage = ()=>{
 
     return (
         <CommonLayout>
-            <main className="flex flex-col gap-1">
-                <h2 className="text-center border-2 rounded-lg p-1 m-1 text-theme font-bold border-theme text-lg">Escoge que inventario deseas ver</h2>
-                <section 
-                onClick={onChangeStorePage}
-                className="border-2 flex flex-col self-center w-[80%] mt-2 border-orange-900 rounded-lg hover:scale-[1.02] cursor-pointer">
-                    <h2 className="text-center text-xl font-bold bg-orange-900 text-white">Tiendas</h2>
-                    <BuildingStorefrontIcon className="text-orange-900"/>
-                </section>
+            <main className="flex flex-col gap-1 w-[100%]">
+                <h2 className="text-center border-2 rounded-lg p-1 m-1 text-theme font-bold border-theme text-lg self-center md:text-4xl">Bienvenido!, puedes ver tu inventario</h2>
+            
                 <section 
                 onClick={onChangeCompanyPage}
-                className="border-2 flex flex-col self-center w-[80%] mt-2 border-red-900 rounded-lg hover:scale-[1.02] cursor-pointer mb-2">
+                className="border-2 md:w-96 flex flex-col self-center w-[80%] mt-2 border-red-900 rounded-lg hover:scale-[1.02] cursor-pointer mb-2">
                     <h2 className="text-center text-xl font-bold bg-red-900 text-white">Compañia</h2>
                     <BuildingOffice2Icon className="text-red-900"/>
                 </section>

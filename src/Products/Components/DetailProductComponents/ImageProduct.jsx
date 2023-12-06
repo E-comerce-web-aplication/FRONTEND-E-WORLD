@@ -17,9 +17,9 @@ export const ImageProduct = ({ data })=>{
     }, [data]);
     
     return (
-        <div className="flex flex-col gap-3">
-            <figure className="border-2 rounded-lg m-1 md:w-72">
-                <img className="self-center h-52 w-full rounded-lg " src={url}/>
+        <div className="flex flex-col gap-3 md:m-1">
+            <figure className="border-2 rounded-lg m-1 md:w-96 ">
+                <img className="self-center md:h-80 w-full rounded-lg " src={url}/>
             </figure>
             <figure className="flex flex-row gap-2 self-center">
                 {

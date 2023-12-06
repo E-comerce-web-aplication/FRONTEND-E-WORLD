@@ -1,7 +1,7 @@
 import { loadInventoryCompany } from "./inventorySlice"
 
 
-const API_URL ="http://localhost:5167/api/inventory"
+const API_URL ="http://3.149.254.125/api/inventory"
 
 
 export const getInventoryCompany = ( companyId )=>{

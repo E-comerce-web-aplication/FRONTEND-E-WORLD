@@ -1,6 +1,6 @@
 import { createPurcharse, loadPurcharses, productLoad } from "./purcharseSlice"
 
-const API_URL ="http://localhost:5167/api/Purchase"
+const API_URL ="http://3.149.254.125/api/Purchase"
 
 export const createNewPurcharse = (data)=>{
     return async ( dispatch )=>{
